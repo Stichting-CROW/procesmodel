@@ -1,0 +1,1 @@
+Dit document beschrijft het doel van crow bij het gebruik van een procesmodel, de keuze voor een type procesmodel en de daarbij gebruikte afwegingscriteria, en een uitleg van het informatiemodel bij het procesmodel.
