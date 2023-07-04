@@ -1,7 +1,7 @@
 var respecConfig = {
   // => https://github.com/stichting-crow/respec/wiki
   specStatus: "DRAFT",
-  shortName: "bim-ondergrond/architectuurframework",
+  shortName: "procesmodel/keuzeprocesmodel",
   specType: "technische documentatie", // vrije tekst, kleine letter
   imprint: "crow",
   editors: [
@@ -10,6 +10,6 @@ var respecConfig = {
       name: "Elisabeth de Vries",
     },
   ],
-  github: "https://github.com/Stichting-CROW/bim-ondergrond",
+  github: "https://github.com/Stichting-CROW/procesmodel",
   license: "cc-by",
 };
