@@ -1,1 +1,4 @@
-Dit document beschrijft het doel van crow bij het gebruik van een procesmodel, de keuze voor een type procesmodel en de daarbij gebruikte afwegingscriteria, en een uitleg van het informatiemodel bij het procesmodel.
+Dit document beschrijft: 
+1. De afweging tussen beschikbare methodes om processen te modelleren en visualiseren;
+2. Onderbouwt de keuze van CROW voor een methode.
+3. Hoe processen worden gepubliceerd.
