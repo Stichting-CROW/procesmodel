@@ -12,4 +12,5 @@ var respecConfig = {
   ],
   github: "https://github.com/Stichting-CROW/procesmodel",
   license: "cc-by",
+  lint: { "no-unused-dfns": false },
 };
