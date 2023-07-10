@@ -1,0 +1,1294 @@
+<!DOCTYPE html><html lang="nl"><head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<meta name="generator" content="ReSpec 32.2.3">
+<style>
+dfn{cursor:pointer}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:MuseoSans,"Museo Sans",Museo,sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel *{margin:0}
+.dfn-panel b{display:block;color:#000;margin-top:.25em}
+.dfn-panel ul a[href]{color:#333}
+.dfn-panel>div{display:flex}
+.dfn-panel a.self-link{font-weight:700;margin-right:auto}
+.dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
+.dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
+.dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
+.dfn-panel a[href]:hover{border-bottom-width:1px}
+.dfn-panel ul{padding:0}
+.dfn-panel li{margin-left:1em}
+.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}
+</style>
+<link rel="stylesheet" href="https://docs.crow.nl/webfonts/webfonts.css">
+<link rel="stylesheet" href="https://docs.crow.nl/respec-design/stichting-crow/base.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)" href="https://docs.crow.nl/respec-design/stichting-crow/dark.min.css">
+  
+  
+  
+  
+<title>Toelichting procesmodel</title>
+  
+  
+
+<style id="respec-mainstyle">
+@keyframes pop{
+0%{transform:scale(1,1)}
+25%{transform:scale(1.25,1.25);opacity:.75}
+100%{transform:scale(1,1)}
+}
+:is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
+dfn{font-weight:700}
+a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
+a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
+a.bibref{text-decoration:none}
+.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}
+.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}
+@supports not (text-decoration:red wavy underline){
+.respec-offending-element:not(pre){display:inline-block}
+.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
+}
+#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+cite .bibref{font-style:normal}
+a[href].orcid{padding-left:4px;padding-right:4px}
+a[href].orcid>svg{margin-bottom:-2px}
+.toc a,.tof a{text-decoration:none}
+a .figno,a .secno{color:#000;color:var(--toclink-text)}
+ol.tof,ul.tof{list-style:none outside none}
+.caption{margin-top:.5em;font-style:italic}
+table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
+.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
+.simple th a{color:#fff;padding:3px 5px;text-align:left}
+.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
+.simple td{padding:3px 10px;border-top:1px solid #ddd}
+.simple tr:nth-child(even){background:#f0f6ff}
+.section dd>p:first-child{margin-top:0}
+.section dd>p:last-child{margin-bottom:0}
+.section dd{margin-bottom:1em}
+.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
+#issue-summary>ul{column-count:2}
+#issue-summary li{list-style:none;display:inline-block}
+details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
+details.respec-tests-details>*{padding-right:2em}
+details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
+details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}
+details.respec-tests-details>ul{width:100%;margin-top:-.3em}
+details.respec-tests-details>li{padding-left:1em}
+.self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
+aside.example .marker>a.self-link{color:inherit}
+.header-wrapper{display:flex;align-items:baseline}
+:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
+:is(h2,h3)+a.self-link{top:-.2em}
+:is(h4,h5,h6)+a.self-link::before{color:#000}
+@media (max-width:767px){
+dd{margin-left:0}
+}
+@media print{
+.removeOnSave{display:none}
+}
+</style>
+<link rel="icon" href="https://docs.crow.nl/respec-design/logos/crow.ico">
+<style>
+ul.index{columns:30ch;column-gap:1.5em}
+ul.index li{list-style:inherit}
+ul.index li span{color:inherit;cursor:pointer;white-space:normal}
+#index-defined-here ul.index li{font-size:.9rem}
+ul.index code{color:inherit}
+#index-defined-here .print-only{display:none}
+@media print{
+#index-defined-here .print-only{display:initial}
+}
+</style>
+<meta name="description" content="Dit document beschrijft:">
+<style>
+var{position:relative;cursor:pointer}
+var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
+</style>
+<script id="initialUserConfig" type="application/json">{
+  "specStatus": "IR",
+  "hypothesisComments": "true",
+  "reviewDateEnd": "2023-08-14",
+  "shortName": "procesmodel/keuzeprocesmodel",
+  "specType": "technische documentatie",
+  "imprint": "crow",
+  "editors": [
+    {
+      "name": "Elisabeth de Vries"
+    }
+  ],
+  "github": "https://github.com/Stichting-CROW/procesmodel",
+  "license": "cc-by",
+  "lint": {
+    "no-unused-dfns": false
+  },
+  "publishISODate": "2023-07-09T00:00:00.000Z",
+  "generatedSubtitle": "CROW technische documentatie, referentieversie 9 juli 2023"
+}</script></head>
+
+<body class="h-entry" style="background-image: url(&quot;https://docs.crow.nl/respec-design/stichting-crow/status-nl/IR.svg&quot;);"><div class="head">
+    <p class="logos"><a class="logo" href="https://www.crow.nl"><img crossorigin="" alt="CROW" height="75" src="https://docs.crow.nl/respec-design/stichting-crow/logo/crow.svg" width="150">
+  </a></p>
+    <h1 id="title" class="title">Toelichting procesmodel</h1> 
+    <p id="w3c-state">CROW technische documentatie,
+  referentieversie <time style="white-space: pre;" class="dt-published" datetime="2023-07-09">9 juli 2023</time></p>
+    <details open="">
+      <summary>Meer informatie over dit document</summary>
+      <dl>
+        
+        
+        
+        <dt>Laatste werkversie:</dt><dd><a href="https://docs.crow.nl/procesmodel/keuzeprocesmodel">https://docs.crow.nl/procesmodel/keuzeprocesmodel</a></dd>
+        <dt>Geschiedenis:</dt><dd>
+                    <a href="https://github.com/Stichting-CROW/procesmodel/commits/">Wijzigingsgeschiedenis</a>
+                  </dd>
+        
+        
+        
+        <dt>Redacteur:</dt><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Elisabeth de Vries</span>
+  </dd>
+        
+        
+        <dt>Feedback:</dt><dd>
+        <a href="https://github.com/Stichting-CROW/procesmodel/">GitHub Stichting-CROW/procesmodel</a>
+        (<a href="https://github.com/Stichting-CROW/procesmodel/pulls/">wijzigingsverzoeken</a>,
+        <a href="https://github.com/Stichting-CROW/procesmodel/issues/new/choose">nieuw issue</a>,
+        <a href="https://github.com/Stichting-CROW/procesmodel/issues/">openstaande issues</a>)
+      </dd><dd id="annotation-service-placeholder">
+        <button type="button" data-load-annotation-service="">
+          Laad annotaties
+        </button>
+        <span><small>Annotaties door <a href="https://web.hypothes.is">Hypothes.is</a> (<a href="https://web.hypothes.is/privacy">privacybeleid</a>).</small></span>
+      </dd><dd hidden="" id="annotation-service-loaded">
+        <span data-hypothesis-annotation-count="">...</span> annotatie(s) met <em>Hypothes.is</em>
+        <button type="button" data-hypothesis-trigger="">
+          Toon annotatiebalk
+        </button>
+        <button type="button" data-unload-annotation-service="">
+          Verberg
+        </button>
+      </dd>
+        
+        
+      </dl>
+    </details>
+    
+    <p class="copyright">
+    Copyright ©
+    2023
+    
+    <a href="https://www.crow.nl">CROW</a>.
+    CROW
+    <a href="https://www.crow.nl/disclaimer">disclaimer</a>
+      van toepassing en gedistribueerd onder
+      <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" title="Creative Commons Naamsvermelding">CC BY 4.0</a>
+  </p>
+    <hr title="Separator for header">
+  </div>
+  
+  <section id="abstract" class="introductory"><h2>Samenvatting</h2><p>Dit document beschrijft: </p>
+<ol>
+<li>De afweging tussen beschikbare methodes om processen te modelleren en visualiseren;</li>
+<li>Onderbouwt de keuze van CROW voor een methode.</li>
+<li>Hoe processen worden gepubliceerd.</li>
+</ol>
+</section>
+  <section id="sotd" class="introductory"><h2>Status van dit document</h2><p><em>Deze paragraaf
+      beschrijft de status van dit document ten tijde van publicatie. Het is
+      mogelijk dat er actuelere versies van dit document bestaan. Bekijk de
+      lijst van CROW technische standaarden op
+      <a href="https://https://docs.crow.nl/">docs.crow.nl</a>
+      en alle CROW-publicaties via
+      <a href="https://https://www.crow.nl">www.crow.nl</a>.</em></p><p>
+      Dit is een reviewversie en is nog niet vastgesteld.
+      Een publicatie als referentieversie
+          impliceert geen onderschrijven door CROW.
+    </p><p>
+            Belanghebbenden, geïnteresseerde partijen en anderen worden
+            uitgenodigd dit document te reviewen en hun commentaar in te zenden
+            vóór 14 augustus 2023. Zowel inhoudelijk als
+            technisch commentaar als commentaar betreffende de
+            implementeerbaarheid is welkom.
+          </p><p>
+      <a href="https://github.com/Stichting-CROW/procesmodel/issues/">GitHub Issues</a> wordt gebruikt voor de discussie
+      van dit document. Eén issue per onderwerp vereenvoudigt de verwerking.
+    </p><p>
+      Reviewcommentaar mag ook achtergelaten worden als
+      <em>Hypothes.is</em> annotaties. Gebruik het publieke kanaal voor je
+      commentaar.
+    </p></section><nav id="toc"><h2 class="introductory" id="inhoudsopgave">Inhoudsopgave</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Samenvatting</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status van dit document</a></li><li class="tocline"><a class="tocxref" href="#inleiding"><bdi class="secno">1. </bdi>Inleiding</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aanleiding"><bdi class="secno">1.1 </bdi>Aanleiding</a></li><li class="tocline"><a class="tocxref" href="#context"><bdi class="secno">1.2 </bdi>Context</a></li><li class="tocline"><a class="tocxref" href="#probleem"><bdi class="secno">1.3 </bdi>Probleem</a></li><li class="tocline"><a class="tocxref" href="#doel"><bdi class="secno">1.4 </bdi>Doel</a></li><li class="tocline"><a class="tocxref" href="#totstandkoming"><bdi class="secno">1.5 </bdi>Totstandkoming</a></li><li class="tocline"><a class="tocxref" href="#leeswijzer"><bdi class="secno">1.6 </bdi>Leeswijzer</a></li></ol></li><li class="tocline"><a class="tocxref" href="#afwegingscriteria"><bdi class="secno">2. </bdi>Afwegingscriteria</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#inleiding-0"><bdi class="secno">2.1 </bdi>Inleiding</a></li><li class="tocline"><a class="tocxref" href="#criteria"><bdi class="secno">2.2 </bdi>Criteria</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#open-standaard"><bdi class="secno">2.2.1 </bdi>Open standaard</a></li><li class="tocline"><a class="tocxref" href="#volledigheid-en-nauwkeurigheid"><bdi class="secno">2.2.2 </bdi>Volledigheid en nauwkeurigheid</a></li><li class="tocline"><a class="tocxref" href="#flexibiliteit-en-aanpasbaarheid"><bdi class="secno">2.2.3 </bdi>Flexibiliteit en aanpasbaarheid</a></li><li class="tocline"><a class="tocxref" href="#informatiemodellering"><bdi class="secno">2.2.4 </bdi>Informatiemodellering</a></li><li class="tocline"><a class="tocxref" href="#applicatie-inrichting"><bdi class="secno">2.2.5 </bdi>Applicatie-inrichting</a></li><li class="tocline"><a class="tocxref" href="#machine-leesbaarheid"><bdi class="secno">2.2.6 </bdi>Machine-leesbaarheid</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#methodes"><bdi class="secno">3. </bdi>Methodes</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#voorselectie"><bdi class="secno">3.1 </bdi>Voorselectie</a></li><li class="tocline"><a class="tocxref" href="#procesmodellering"><bdi class="secno">3.2 </bdi>Procesmodellering</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#bpmn"><bdi class="secno">3.2.1 </bdi>BPMN</a></li><li class="tocline"><a class="tocxref" href="#uml"><bdi class="secno">3.2.2 </bdi>UML</a></li><li class="tocline"><a class="tocxref" href="#idef"><bdi class="secno">3.2.3 </bdi>IDEF</a></li><li class="tocline"><a class="tocxref" href="#petri-nets"><bdi class="secno">3.2.4 </bdi>Petri nets</a></li><li class="tocline"><a class="tocxref" href="#value-stream-mapping"><bdi class="secno">3.2.5 </bdi>Value stream mapping</a></li><li class="tocline"><a class="tocxref" href="#visi"><bdi class="secno">3.2.6 </bdi>VISI</a></li></ol></li><li class="tocline"><a class="tocxref" href="#visualisatiemethoden"><bdi class="secno">3.3 </bdi>Visualisatiemethoden</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#swimlane"><bdi class="secno">3.3.1 </bdi>Swimlane</a></li><li class="tocline"><a class="tocxref" href="#dataflowdiagrammen"><bdi class="secno">3.3.2 </bdi>Dataflowdiagrammen</a></li><li class="tocline"><a class="tocxref" href="#flowcharts"><bdi class="secno">3.3.3 </bdi>Flowcharts</a></li><li class="tocline"><a class="tocxref" href="#rasci"><bdi class="secno">3.3.4 </bdi>RASCI</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#afweging"><bdi class="secno">4. </bdi>Afweging</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#inleiding-1"><bdi class="secno">4.1 </bdi>Inleiding</a></li><li class="tocline"><a class="tocxref" href="#vergelijking"><bdi class="secno">4.2 </bdi>Vergelijking</a></li><li class="tocline"><a class="tocxref" href="#input-stakeholders"><bdi class="secno">4.3 </bdi>Input stakeholders</a></li><li class="tocline"><a class="tocxref" href="#keuze-methode"><bdi class="secno">4.4 </bdi>Keuze methode</a></li><li class="tocline"><a class="tocxref" href="#keuze-diepgang"><bdi class="secno">4.5 </bdi>Keuze diepgang</a></li></ol></li><li class="tocline"><a class="tocxref" href="#uitwerking"><bdi class="secno">5. </bdi>Uitwerking</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#inleiding-2"><bdi class="secno">5.1 </bdi>Inleiding</a></li><li class="tocline"><a class="tocxref" href="#procesmodel"><bdi class="secno">5.2 </bdi>Procesmodel</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informatiemodel"><bdi class="secno">5.2.1 </bdi>Informatiemodel</a></li><li class="tocline"><a class="tocxref" href="#online-publicatie"><bdi class="secno">5.2.2 </bdi>Online publicatie</a></li><li class="tocline"><a class="tocxref" href="#downloads"><bdi class="secno">5.2.3 </bdi>Downloads</a></li><li class="tocline"><a class="tocxref" href="#wijzigingsbeheer"><bdi class="secno">5.2.4 </bdi>Wijzigingsbeheer</a></li><li class="tocline"><a class="tocxref" href="#documentatie"><bdi class="secno">5.2.5 </bdi>Documentatie</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#onderbouwing"><bdi class="secno">5.2.5.1 </bdi>Onderbouwing</a></li><li class="tocline"><a class="tocxref" href="#code-documentatie"><bdi class="secno">5.2.5.2 </bdi>Code-documentatie</a></li><li class="tocline"><a class="tocxref" href="#viewer"><bdi class="secno">5.2.5.3 </bdi>Viewer</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#proces"><bdi class="secno">5.3 </bdi>Proces</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#distributievormen"><bdi class="secno">5.3.1 </bdi>Distributievormen</a></li><li class="tocline"><a class="tocxref" href="#visualisatie"><bdi class="secno">5.3.2 </bdi>Visualisatie</a></li><li class="tocline"><a class="tocxref" href="#documentatie-0"><bdi class="secno">5.3.3 </bdi>Documentatie</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#onderbouwing-0"><bdi class="secno">5.3.3.1 </bdi>Onderbouwing</a></li><li class="tocline"><a class="tocxref" href="#code-documentatie-0"><bdi class="secno">5.3.3.2 </bdi>Code-documentatie</a></li><li class="tocline"><a class="tocxref" href="#gebruikershandleiding"><bdi class="secno">5.3.3.3 </bdi>Gebruikershandleiding</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">6. </bdi>Conformiteit</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">A. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">A.1 </bdi>Termen gedefinieerd door deze specificatie</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">A.2 </bdi>Termen gedefinieerd door referentie</a></li></ol></li></ol></nav>
+  <section class="informative" id="inleiding"><div class="header-wrapper"><h2 id="x1-inleiding"><bdi class="secno">1. </bdi>Inleiding</h2><a class="self-link" href="#inleiding" aria-label="Permalink for Section 1."></a></div><p><em>Dit onderdeel is niet normatief.</em></p>
+<section id="aanleiding"><div class="header-wrapper"><h3 id="x1-1-aanleiding"><bdi class="secno">1.1 </bdi>Aanleiding</h3><a class="self-link" href="#aanleiding" aria-label="Permalink for Section 1.1"></a></div>
+<p>De CORE-gemeenten Almelo en Utrecht zijn bezig met het uitwerken van werkprocesbeschrijvingen bij het [<a data-link-type="dfn" href="#dfn-iampro-model" class="internalDFN" id="ref-for-dfn-iampro-model-1">iAMPRo model</a>] en willen hierin samenwerken. Zij hebben CROW gevraagd om de door Almelo uitgewerkte werkprocessen te gebruiken om referentieprocessen te beschrijven bij het [<a data-link-type="dfn" href="#dfn-iampro-model" class="internalDFN" id="ref-for-dfn-iampro-model-2">iAMPRo model</a>]. Deze werkprocesbeschrijvingen dienen als onderbouwing voor het standaardiseren van asset data in informatiemodellen en als referentieproces voor assetmanagers voor het beschrijven van hun organisatiespecifieke werkprocessen. </p>
+<figure id="fig-het-iampro-procesmodel">
+<img src="./h/media/Beheerfase.jpg" alt="Het iAMPRo procesmodel met het primaire proces in een cirkel: (1) Beleid en strategie (2) Beheren en Programmeren (3) Plannen en voorbereiden (4) Bouwen en onderhouden (5) Monitoren en analyseren (6) Evalueren en bijsturen. Ondersteunen aan het primaire werkproces zijn twee onderdelen in het midden van de cirkel: (7) Data en informatie en (8) Mens en organisatie." height="516" width="478">
+<figcaption>Figuur <bdi class="figno">1</bdi> <span class="fig-title">Het iAMPRo procesmodel
+</span></figcaption></figure>
+
+<p><dfn data-lt="iAMPRo model" id="dfn-iampro-model" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">iAMPRo model</dfn>: Een asset management model met het primaire proces gevisualiseerd in een cirkel: (1) Beleid en strategie (2) Beheren en Programmeren (3) Plannen en voorbereiden (4) Bouwen en onderhouden (5) Monitoren en analyseren (6) Evalueren en bijsturen. Ondersteunend aan het primaire werkproces zijn twee onderdelen in het midden van de cirkel: (7) Data en informatie en (8) Mens en organisatie. Dit model bevat een praktische vertaling van de NEN-ISO 55000. </p>
+
+</section><section id="context"><div class="header-wrapper"><h3 id="x1-2-context"><bdi class="secno">1.2 </bdi>Context</h3><a class="self-link" href="#context" aria-label="Permalink for Section 1.2"></a></div>
+<p>CROW wil met haar processtandaarden en informatiemodellen en BIM kennis onderdeel zijn van het Digitaal Stelsel Gebouwde Omgeving (<abbr title="Digitaal Stelsel Gebouwde Omgeving">DSGO</abbr>). Daarom baseren we ons bij de uitwerking van processen op de standaarden en richtlijnen die binnen het <abbr title="Digitaal Stelsel Gebouwde Omgeving">DSGO</abbr> passen. De informatiemodellen bij de standaardisatieorganisaties CROW, Ketenstandaard, Geonovum, Stichting Rioned en DigiGO moeten daarnaast bij voorkeur een samenhangend geheel vormen. Om dit te bereiken maken we gebruik van de processtandaarden die van toepassing zijn op gebouwde omgeving. Er is binnen het <abbr title="Digitaal Stelsel Gebouwde Omgeving">DSGO</abbr> geen keuze gemaakt voor een procesmodel. </p>
+</section><section id="probleem"><div class="header-wrapper"><h3 id="x1-3-probleem"><bdi class="secno">1.3 </bdi>Probleem</h3><a class="self-link" href="#probleem" aria-label="Permalink for Section 1.3"></a></div>
+<p>Er zijn meerdere methodes om processen te modelleren en te visualiseren, elk met eigen voor- en nadelen. Als CROW meerdere methodes gebruikt, zijn verschillende informatiemodellen en beheerogevingen nodig om deze te beheren, en moet meerdere keren geinvesteerd worden in het visualiseren van de processen in onze kennisproducten. Dit zelfde geldt voor onze gebruikers, die het proces willen opnemen in hun eigen architectuur of applicaties. Keuze voor één procesmodel biedt schaalvoordelen voor zowel CROW als haar gebruikers.</p>
+</section><section id="doel"><div class="header-wrapper"><h3 id="x1-4-doel"><bdi class="secno">1.4 </bdi>Doel</h3><a class="self-link" href="#doel" aria-label="Permalink for Section 1.4"></a></div>
+<p>CROW wil processen vastleggen met als doel:</p>
+<ol>
+<li><p><strong>Referentieprocessen</strong> publiceren voor toepassing op organisatiespecifieke werkprocessen. Het procesmodel kan worden gebruikt als een referentie voor assetmanagers, informatiemanagers of project- en contractmanagers bij het beschrijven van hun organisatiespecifieke werkprocessen in de eigen praktijk. Ze kunnen het procesmodel raadplegen om best practices te identificeren, belangrijke stappen te begrijpen en het als basis te gebruiken bij het ontwerpen van hun eigen processen. Daarbij zijn vooral de identificatie van processtappen, beslissingen en rollen en verantwoordelijkheden van belang. Een voorbeeld van zo'n referentieproces is het <a href="https://iampro-portaal.nl/Data-en-AM/Bouwwerk-informatiemanagement/BIM-Producten#Procesanalyse">informatiemanagementproces rondom projecten</a>, wat door de provincies is uitgewerkt in een gezamenlijk programma. Merk op, dat deze ontwikkeling nog pril is; welk detailniveau en complexiteit van referentieprocessen nodig is, is nog niet onderzocht.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: Het procesmodel kan worden gebruikt als basis voor het opstellen van informatiemodellen. Het biedt een gestructureerd overzicht van de processen en de bijbehorende in- en outputgegevens. Op basis van het procesmodel kunnen informatiemodellen worden ontwikkeld die de gegevensvereisten en de relaties tussen de gegevens nauwkeurig definiëren. Het gaat hierbij om informatiemodellen die aangeven welke informatie wordt vastgelegd over assets in de openbare ruimte en infrastructuur, bijvoorbeeld gegevens over de gewenste kwaliteit, prestaties en risico's en kosten, maar ook gedetailleerde gegevens en parameters die nodig zijn om te ontwerpen en beheermaatregelen vast te stellen. Een voorbeeld van een informatiemodel is <a href="https://www.crow.nl/thema-s/management-openbare-ruimte/imbor/actuele-versie-imbor">IMBOR</a>.</p>
+</li>
+<li><p><strong>Applicatie-ontwerp en implementatie</strong>: CROW wil dat softwareleveranciers het procesmodel kunnen gebruiken bij het ontwerpen en implementeren van applicaties die het proces ondersteunen. Het biedt inzicht in de stappen, taken, gegevensstromen en rollen binnen het proces, waardoor applicaties kunnen worden ontwikkeld die de juiste functionaliteit bieden om het proces efficiënt uit te voeren, waarbij voor de in- en output gebruik kan worden gemaakt van de informatiemodellen van CROW over assets. Een voorbeeld van applicaites die een werkproces ondersteunen zijn de areaalbeheerapplicaties, die het tactische en operationele beheer van assets ondersteunen. Het bijbehorende informatiemodel is IMBOR.</p>
+</li>
+</ol>
+<p>CROW wil op een standaard wijze processen modelleren, zodat we onze kennis over processen op een eenduidige manier kunnen publiceren voor gebruik in applicaties en voor visualisaties van het proces in onze kennisproducten.
+Daarom willen we: </p><ol><p></p>
+<li>Bepalen met <b>welke methode</b> de processen vastgelegd worden;
+</li><li>Bepalen hoe de processen <b>als data</b> gepubliceerd worden;
+</li><li> Bepalen hoe de processen <b>gevisualiseerd</b> worden;
+</li><li> Bepalen hoe de <b>onderbouwing</b> van een proces gepubliceerd wordt.</li></ol>
+
+</section><section id="totstandkoming"><div class="header-wrapper"><h3 id="x1-5-totstandkoming"><bdi class="secno">1.5 </bdi>Totstandkoming</h3><a class="self-link" href="#totstandkoming" aria-label="Permalink for Section 1.5"></a></div>
+<p>Het is belangrijk om de specifieke behoeften en vereisten van CROW en gebruikers van onze kennis (asset managers, project-/contractmanagers, softwareleveranciers) in overweging te nemen bij het selecteren van de juiste methode voor procesmodellering. Daarom wordt de keuze voor het procesmodel in een open consultatie voorgelegd aan kenniswerkers van CROW, en aan gebruikers van kennisproducten van CROW, waaronder asset managers en project/contractmanagers, voordat een besluit wordt genomen.</p>
+</section><section id="leeswijzer"><div class="header-wrapper"><h3 id="x1-6-leeswijzer"><bdi class="secno">1.6 </bdi>Leeswijzer</h3><a class="self-link" href="#leeswijzer" aria-label="Permalink for Section 1.6"></a></div>
+<p>Dit document beschrijft per hoofdstuk: </p>
+<ul>
+<li><ol start="2">
+<li>De afwegingscriteria voor de keuze voor een methode van procesmodellering.</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>De beschikbare methodes om processen te modelleren en visualiseren;</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>De afweging van criteria, de keuze voor een methode.</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>De uitwerking van de publicatiewijze</li>
+</ol>
+</li>
+</ul>
+<p>Wélke processen worden uitgewerkt en tot op welk detailniveau die uitwerking nodig is valt buiten scope van dit document.</p>
+</section></section> 
+  <section class="informative" id="afwegingscriteria"><div class="header-wrapper"><h2 id="x2-afwegingscriteria"><bdi class="secno">2. </bdi>Afwegingscriteria</h2><a class="self-link" href="#afwegingscriteria" aria-label="Permalink for Section 2."></a></div><p><em>Dit onderdeel is niet normatief.</em></p>
+<section id="inleiding-0"><div class="header-wrapper"><h3 id="x2-1-inleiding"><bdi class="secno">2.1 </bdi>Inleiding</h3><a class="self-link" href="#inleiding-0" aria-label="Permalink for Section 2.1"></a></div>
+<p>Dit hoofdstuk beschrijft de afwegingscriteria voor de keuze voor een methode van procesmodellering. </p>
+</section><section id="criteria"><div class="header-wrapper"><h3 id="x2-2-criteria"><bdi class="secno">2.2 </bdi>Criteria</h3><a class="self-link" href="#criteria" aria-label="Permalink for Section 2.2"></a></div>
+<section id="open-standaard"><div class="header-wrapper"><h4 id="x2-2-1-open-standaard"><bdi class="secno">2.2.1 </bdi>Open standaard</h4><a class="self-link" href="#open-standaard" aria-label="Permalink for Section 2.2.1"></a></div>
+<p>Het criterium "<strong>Open standaard</strong>" verwijst naar de mate waarin de gekozen methode open beschikbaar is en vrij kan worden geïmplementeerd, zonder beperkingen op het gebruik ervan. De gekozen methode moet ook goede documentatie en ondersteuning bieden. Dit kan bestaan uit handleidingen, tutorials, voorbeelden en een actieve gebruikersgemeenschap. Dit maakt dat het resultaat makkelijke en generiek interpreteerbaar is. Het volgen van een methode zorgt er tevens voor dat de opstellers minder, tot niet, nodig zijn om het model te begrijpen. Er kan namelijke verwezen worden naar een (online)documentatie. Voldoende ondersteuning helpt bij het begrijpen en toepassen van de methode en vergemakkelijkt het leerproces voor CROW én asset managers. De keuze voor een open standaard heeft als voordelen:</p>
+<ul>
+<li><p>Interoperabiliteit: Door open standaarden te gebruiken, kunnen procesmodellen gemakkelijker worden uitgewisseld en gedeeld tussen verschillende tools, systemen en organisaties. Dit bevordert federatief datadelen en maakt samenwerking en integratie gemakkelijker.</p>
+</li>
+<li><p>Duurzaamheid: Open standaarden hebben de neiging om stabiel en duurzaam te zijn omdat ze onderhevig zijn aan een open en transparant ontwikkelingsproces en ze niet afhankelijk zijn van ondersteuning door één leverancier. </p>
+</li>
+<li><p>Keuzevrijheid: Het gebruik van open standaarden geeft organisaties meer flexibiliteit en keuzevrijheid bij het selecteren van tools en systemen om hun procesmodellen te maken en te beheren. Ze zijn niet gebonden aan een specifieke leverancier of gesloten ecosysteem.</p>
+</li>
+<li><p>Innovatie: Open standaarden bevorderen concurrentie en innovatie doordat verschillende leveranciers en ontwikkelaars kunnen bijdragen aan de ontwikkeling en verbetering ervan. Dit kan leiden tot betere tools en meer geavanceerde functies voor het modelleren en beheren van processen.</p>
+</li>
+<li><p>Acceptatie: Het gebruik van gestandaardiseerde notaties en methoden, zoals BPMN (Business Process Model and Notation) of UML (Unified Modeling Language) heeft als voordeel brede acceptatie en compatibiliteit in de industrie. Dit vergemakkelijkt de uitwisselbaarheid van de modellen en de samenwerking met andere partijen.</p>
+</li>
+</ul>
+</section><section id="volledigheid-en-nauwkeurigheid"><div class="header-wrapper"><h4 id="x2-2-2-volledigheid-en-nauwkeurigheid"><bdi class="secno">2.2.2 </bdi>Volledigheid en nauwkeurigheid</h4><a class="self-link" href="#volledigheid-en-nauwkeurigheid" aria-label="Permalink for Section 2.2.2"></a></div>
+<p>Het criterium "<strong>Volledigheid en nauwkeurigheid</strong>" gaat over bruikbaarheid voor alle kennisproducten van CROW. De gekozen methode moet de mogelijkheid bieden om alle relevante aspecten van de processen te modelleren. De methode moet geschikt zijn om de gewenste mate van detail en complexiteit te ondersteunen.
+Daarbij van belang zijn:</p>
+<ul>
+<li><p>Volledigheid op aspecten: stappen, beslissingen, gegevensstromen, rollen en verantwoordelijkheden.</p>
+</li>
+<li><p>Notatieniveau: Verschillende notaties of modelleringsmethoden bieden verschillende niveaus van detail. Bijvoorbeeld, BPMN (Business Process Model and Notation) kan variëren van eenvoudige high-level diagrammen tot gedetailleerde modellen met specifieke gebeurtenissen, gateways en subprocessen. UML (Unified Modeling Language) biedt ook verschillende diagramtypen en niveaus van complexiteit, zoals use case diagrams, activity diagrams en sequence diagrams. Je kunt hierdoor de notatie kiezen die past bij het gewenste detailniveau voor jouw procesmodellen.</p>
+</li>
+<li><p>Modelleringstechnieken: Binnen een bepaalde notatie zijn er verschillende technieken die je kunt gebruiken om de gewenste mate van detail en complexiteit te bereiken. Bijvoorbeeld, BPMN ondersteunt technieken zoals subprocessen, events, timers en conditions om specifieke situaties en beslissingen weer te geven. UML biedt verschillende diagramtypen en modelleringsconstructies om de complexiteit van een proces weer te geven, zoals parallelle stromen, conditionele routes en iteratieve stappen. Je kunt hierdoor de juiste modelleringstechnieken selecteren op basis van de vereisten van een proces.</p>
+</li>
+<li><p>Modelleringsniveaus: Een andere benadering is om te werken met verschillende modelleringsniveaus om verschillende aspecten van het proces in detail te beschrijven. Je kunt bijvoorbeeld een high-level diagram gebruiken om de hoofdstappen en grote interacties weer te geven, en vervolgens gedetailleerdere submodellen of diagrammen maken om specifieke delen van het proces in meer detail te tonen. Dit stelt je in staat om de gewenste mate van detail en complexiteit te bereiken terwijl je het overzicht behoudt.</p>
+</li>
+<li><p>Aanvullende documentatie: Naast het procesmodel zelf kun je aanvullende documentatie gebruiken om de gewenste mate van detail en complexiteit vast te leggen. Dit kunnen bijvoorbeeld procesbeschrijvingen, business rules, datamodellen, use case scenarios, of gedetailleerde specificaties zijn. Door deze documentatie te koppelen aan het procesmodel kun je de benodigde informatie verschaffen zonder het procesmodel zelf te overladen met details.</p>
+</li>
+</ul>
+</section><section id="flexibiliteit-en-aanpasbaarheid"><div class="header-wrapper"><h4 id="x2-2-3-flexibiliteit-en-aanpasbaarheid"><bdi class="secno">2.2.3 </bdi>Flexibiliteit en aanpasbaarheid</h4><a class="self-link" href="#flexibiliteit-en-aanpasbaarheid" aria-label="Permalink for Section 2.2.3"></a></div>
+<p>Het criterium "<strong>Flexibiliteit en aanpasbaarheid</strong>" gaat over de flexibiliteit van de gekozen methode om gebruikt te kunnen worden voor alle kennisproducten van CROW, en het moet in staat zijn om verschillende soorten processen en variaties te modelleren, zodat een asset manager organisatie-specifieke werkprocessen kunt beschrijven. Zorg ervoor dat de methode aanpasbaar is en de mogelijkheid biedt om aangepaste elementen of notaties toe te voegen indien nodig.</p>
+</section><section id="informatiemodellering"><div class="header-wrapper"><h4 id="x2-2-4-informatiemodellering"><bdi class="secno">2.2.4 </bdi>Informatiemodellering</h4><a class="self-link" href="#informatiemodellering" aria-label="Permalink for Section 2.2.4"></a></div>
+<p>Het criterium "<strong>Informatiemodellering</strong>" gaat over de mogelijkheid die de gekozen methode biedt om informatiemodellen op te stellen. Dit betekent dat het de input- en outputgegevens van het proces expliciet en gestructureerd kan weergeven, inclusief datatypen, bronnen, transformaties en relaties tussen gegevens. Dit is essentieel om de informatiemodellen te onderbouwen en te koppelen aan de bijbehorende processen.</p>
+<p>Wanneer een procesmodel voldoet aan dit criterium, betekent dit dat de benodigde inputgegevens en de resulterende outputgegevens duidelijk en expliciet worden weergegeven in het model. Dit stelt gebruikers in staat om de informatie die nodig is om het proces uit te voeren of te begrijpen, rechtstreeks uit het procesmodel te halen.</p>
+<p>Het hebben van de mogelijkheid om de input- en outputgegevens af te leiden uit het procesmodel biedt verschillende voordelen, zoals:</p>
+<ul>
+<li><p>Begrip van gegevensvereisten: Het procesmodel biedt inzicht in welke gegevens nodig zijn als input voor het proces en welke gegevens als output worden geproduceerd. Dit helpt bij het begrijpen van de gegevensvereisten en zorgt voor duidelijkheid over welke gegevens moeten worden verstrekt of verzameld om het proces uit te voeren.</p>
+</li>
+<li><p>Transparantie en traceerbaarheid: Door de input- en outputgegevens expliciet te maken, wordt de transparantie van het proces vergroot. Het wordt duidelijk welke gegevens worden gebruikt en gegenereerd tijdens elke stap, waardoor de traceerbaarheid van gegevens door het proces mogelijk wordt.</p>
+</li>
+<li><p>Betere analyse en optimalisatie: Het expliciet weergeven van de input- en outputgegevens maakt het gemakkelijker om het proces te analyseren en te identificeren waar verbeteringen kunnen worden aangebracht. Door te begrijpen welke gegevens worden gebruikt en geproduceerd, kunnen organisaties gericht werken aan het optimaliseren van de gegevensverwerking en het verbeteren van de procesprestaties.</p>
+</li>
+</ul>
+</section><section id="applicatie-inrichting"><div class="header-wrapper"><h4 id="x2-2-5-applicatie-inrichting"><bdi class="secno">2.2.5 </bdi>Applicatie-inrichting</h4><a class="self-link" href="#applicatie-inrichting" aria-label="Permalink for Section 2.2.5"></a></div>
+<p>Het criterium "<strong>Applicatie kan worden ingericht</strong>" geeft aan of het procesmodel voldoende informatie biedt om een applicatie te ontwerpen en te implementeren op basis van het proces. Hiermee kan het proces door softwareleveranciers worden ondersteund.
+Een procesmodel dat geschikt is voor het inrichten van een applicatie bevat vaak gedetailleerde informatie over de stappen, taken, gegevensvereisten, beslissingen en andere relevante elementen van het proces. Het biedt een solide basis voor het ontwerpen en implementeren van een geautomatiseerde applicatie die het proces ondersteunt, zoals een workflow management systeem of een bedrijfsapplicatie.</p>
+</section><section id="machine-leesbaarheid"><div class="header-wrapper"><h4 id="x2-2-6-machine-leesbaarheid"><bdi class="secno">2.2.6 </bdi>Machine-leesbaarheid</h4><a class="self-link" href="#machine-leesbaarheid" aria-label="Permalink for Section 2.2.6"></a></div>
+<p>Het criterium "<strong>machine-leesbaarheid</strong>" geeft aan of het procesmodel gemakkelijk door machines kan worden gelezen en verwerkt.
+Een machine-leesbaar procesmodel volgt vaak een standaard notatie of syntaxis die door computers en softwaretools kan worden geïnterpreteerd. Het maakt gebruik van gestandaardiseerde symbolen, tags of metadata om de elementen en relaties van het proces duidelijk te definiëren. Dit vergemakkelijkt de automatische verwerking, analyse en uitvoering van het procesmodel met behulp van softwaretools en systemen.
+Dit zorgt ervoor dat CROW het proces geautomatiseerd kan visualiseren voor kennisproducten.</p>
+</section></section></section> 
+  <section class="informative" id="methodes"><div class="header-wrapper"><h2 id="x3-methodes"><bdi class="secno">3. </bdi>Methodes</h2><a class="self-link" href="#methodes" aria-label="Permalink for Section 3."></a></div><p><em>Dit onderdeel is niet normatief.</em></p>
+<section id="voorselectie"><div class="header-wrapper"><h3 id="x3-1-voorselectie"><bdi class="secno">3.1 </bdi>Voorselectie</h3><a class="self-link" href="#voorselectie" aria-label="Permalink for Section 3.1"></a></div>
+<p>In dit hoofdstuk worden de meest gebruikte procesmodel-methodes beschreven. Deze methodes hebben allemaal een andere focus voor gebruik. We delen ze in als procesmodelleringsmethoden en visualisatiemethoden.</p>
+<p>Van de beschikbare procesmodel standaarden kunnen de volgende worden beschouwd als methodes voor het modelleren van processen:</p>
+<ul>
+<li><strong>BPMN</strong>: legt de focus op het modelleren en visualiseren van bedrijfsprocessen, waarbij de nadruk ligt op het vastleggen van de stappen, beslissingen, gegevensstromen en betrokken partijen.</li>
+<li><strong>UML</strong>:  legt de focus op het modelleren van objectgeoriënteerde software en systemen, waarbij verschillende diagramtypen worden gebruikt om structuur, gedrag en interacties weer te geven.</li>
+<li><strong>IDEF</strong>: legt de focus op het automatiseren van het proces, waarbij gebruik wordt gemaakt van gestructureerde diagrammen om de logica, gegevensstromen en relaties tussen elementen vast te leggen.</li>
+<li><strong>Petri nets</strong>: leggen de focus op het modelleren van parallelle processen, gebeurtenissen en de overgangen tussen verschillende toestanden, waarbij gebruik wordt gemaakt van plaatsen, overgangen en pijlen.</li>
+<li><strong>Value stream mapping</strong>: legt de focus op het visualiseren van de stroom van waarde door een proces, waarbij verspillingen worden geïdentificeerd en verbetermogelijkheden worden geanalyseerd om de procesefficiëntie te optimaliseren.</li>
+<li><strong>VISI</strong>: legt de focus op communicatie en samenwerking binnen de bouw- en infrasector, waarbij het definiëren van rollen, verantwoordelijkheden en informatiestromen tussen belanghebbenden centraal staat.
+Deze methoden bieden specifieke modelleringsconstructies, symbolen en notaties om processen en hun eigenschappen vast te leggen, zoals stappen, gebeurtenissen, beslissingen, gegevensstromen, rollen, verantwoordelijkheden en de volgorde van activiteiten. Bij deze methodes horen ook specifieke visualisatiemethoden.</li>
+</ul>
+<p>Aan de andere kant kunnen de volgende standaarden meer worden beschouwd als visualisatiemethoden, waarbij de nadruk ligt op het weergeven van processen en de toewijzing van taken en verantwoordelijkheden aan specifieke rollen of afdelingen. </p>
+<ul>
+<li><strong>Swimlane</strong>: leggen de focus op het visualiseren van processen en de toewijzing van taken en verantwoordelijkheden aan specifieke rollen of afdelingen binnen een organisatie.</li>
+<li><strong>Dataflowdiagrammen</strong>: leggen de focus op het modelleren van gegevensstromen en de verwerking van gegevens binnen een systeem of proces, waarbij de nadruk ligt op de input, output en transformatie van gegevens.</li>
+<li><strong>Flowcharts</strong>:  leggen de focus op het visualiseren van de stappen, beslissingen en de volgorde van activiteiten binnen een proces, waarbij gebruik wordt gemaakt van symbolen en pijlen om de stroom van het proces weer te geven.</li>
+<li><strong>RASCI</strong>:  legt de focus op het definiëren van rollen en verantwoordelijkheden binnen een proces, waarbij elke rol wordt toegewezen aan een van de categorieën: Responsible, Accountable, Supportive, Consulted of Informed.
+Hoewel deze visualisatiemethoden ook inzicht kunnen geven in het procesverloop, zijn ze mogelijk minder gestructureerd en gedetailleerd als het gaat om het modelleren van proceslogica en gegevensstromen. Ze worden vaak gebruikt voor het communiceren van processen binnen een organisatie of team en kunnen een meer high-level en overzichtelijke weergave bieden.</li>
+</ul>
+</section><section id="procesmodellering"><div class="header-wrapper"><h3 id="x3-2-procesmodellering"><bdi class="secno">3.2 </bdi>Procesmodellering</h3><a class="self-link" href="#procesmodellering" aria-label="Permalink for Section 3.2"></a></div>
+<section id="bpmn"><div class="header-wrapper"><h4 id="x3-2-1-bpmn"><bdi class="secno">3.2.1 </bdi>BPMN</h4><a class="self-link" href="#bpmn" aria-label="Permalink for Section 3.2.1"></a></div>
+<p><dfn data-lt="BPMN" id="dfn-bpmn" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">BPMN</dfn>: BPMN (Business Process Model and Notation) is een gangbare methode voor procesmodellering die vaak wordt gebruikt in de industrie. BPMN is een gestandaardiseerde grafische notatie voor het modelleren van bedrijfsprocessen. Het biedt een uitgebreidere set symbolen en notaties dan flowcharts en kan gedetailleerdere informatie bevatten, zoals gebeurtenissen, gateways, pools en zwembanen. <a href="https://www.omg.org/spec/BPMN/">OMG Specificatie</a> </p>
+
+<figure id="fig-een-voorbeeld-van-een-bpmn-visualisatie">
+<img src="./h/media/BlueSpice_BPMN_graphic_4-1.png" alt="Een voorbeeld van een BPMN visualisatie" height="564" width="1092">
+<figcaption>Figuur <bdi class="figno">2</bdi> <span class="fig-title">Een voorbeeld van een BPMN visualisatie
+</span></figcaption></figure>
+
+
+<ul>
+<li><p><strong>Open standaard</strong>: BPMN voldoet aan het criterium van een open standaard. Het wordt ondersteund door de Object Management Group (OMG) en is breed geaccepteerd in de branche. BPMN-specificaties zijn vrij beschikbaar en er zijn verschillende tools en software-implementaties die BPMN ondersteunen. </p>
+</li>
+<li><p><strong>Volledigheid en nauwkeurigheid</strong>: BPMN biedt een rijke set van symbolen en notaties waarmee je processen op verschillende niveaus van detail en complexiteit kunt modelleren. Het ondersteunt het vastleggen van stappen, beslissingen, gegevensstromen, rollen en verantwoordelijkheden. BPMN kan zowel high-level overzichtsmodellen als gedetailleerde modellen met specifieke gebeurtenissen, gateways en subprocessen bevatten.</p>
+</li>
+<li><p><strong>Flexibiliteit en aanpasbaarheid</strong>: BPMN is flexibel en aanpasbaar. Het biedt verschillende modelleringsconstructies en technieken, zoals subprocessen, gebeurtenissen, timers en conditions, waarmee je processen kunt modelleren op basis van de specifieke vereisten van CROW en asset managers. Het ondersteunt ook modellering op verschillende niveaus, waardoor je zowel high-level als gedetailleerde modellen kunt maken.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: BPMN biedt mogelijkheden voor informatiemodellering. Je kunt input- en outputgegevens expliciet maken in het procesmodel door gegevensobjecten te definiëren en gegevensstromen tussen processtappen weer te geven. BPMN ondersteunt ook het modelleren van beslissingen en datatransformaties, waardoor je de informatiemodellering verder kunt verfijnen.</p>
+</li>
+<li><p><strong>Applicatie-inrichting</strong>: BPMN is geschikt voor het inrichten van applicaties. Het biedt voldoende informatie om een applicatie te ontwerpen en te implementeren op basis van het procesmodel. BPMN-modellen kunnen worden gebruikt om workflow management systemen of bedrijfsapplicaties te ondersteunen, waarbij taken, rollen en gegevensvereisten duidelijk worden gedefinieerd.</p>
+</li>
+<li><p><strong>Machine-leesbaarheid</strong>: BPMN is machine-leesbaar. Het volgt een gestandaardiseerde notatie en syntaxis die door computers en softwaretools kan worden geïnterpreteerd. Dit vergemakkelijkt de automatische verwerking, analyse en uitvoering van BPMN-modellen met behulp van BPMN-compatibele tools en systemen.</p>
+</li>
+</ul>
+<p>BPMN voldoet aan de meeste van de gestelde criteria. Het is een breed geaccepteerde methode voor procesmodellering die een goede balans biedt tussen volledigheid, flexibiliteit en machine-leesbaarheid. </p>
+</section><section id="uml"><div class="header-wrapper"><h4 id="x3-2-2-uml"><bdi class="secno">3.2.2 </bdi>UML</h4><a class="self-link" href="#uml" aria-label="Permalink for Section 3.2.2"></a></div>
+<p><dfn data-lt="UML" id="dfn-uml" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">UML</dfn>: UML (Unified Modeling Language) wordt voornamelijk gebruikt voor softwareontwikkeling, maar het kan ook worden toegepast op het modelleren van bedrijfsprocessen. Het bevat verschillende diagramtypen, zoals use case-diagrammen en activiteitendiagrammen, die kunnen worden gebruikt om procesmodellen vast te leggen. <a href="https://www.omg.org/spec/UML/">UML specificatie</a> </p>
+
+<figure id="fig-een-voorbeeld-van-een-idef0-diagram">
+<img src="./h/media/CPT-For-loop-diagram-complex.svg" alt="Een voorbeeld van een IDEF0 diagram" height="404" width="269">
+<figcaption>Figuur <bdi class="figno">3</bdi> <span class="fig-title">Een voorbeeld van een IDEF0 diagram
+</span></figcaption></figure>
+
+<ul>
+<li><p><strong>Open standaard</strong>: UML voldoet aan het criterium van een open standaard. Het wordt beheerd en onderhouden door de Object Management Group (OMG) en is vrij beschikbaar voor gebruik. UML heeft een brede acceptatie in de branche en er zijn verschillende tools en software-implementaties beschikbaar die UML ondersteunen. </p>
+</li>
+<li><p><strong>Volledigheid en nauwkeurigheid</strong>: UML biedt een uitgebreide set van diagramtypen en notaties waarmee je verschillende aspecten van een systeem of proces kunt modelleren. Voor het modelleren van processen biedt UML onder andere activiteitsdiagrammen en use case diagrams. Deze diagramtypen kunnen op verschillende niveaus van detail en complexiteit worden gebruikt om stappen, beslissingen, gegevensstromen, rollen en verantwoordelijkheden vast te leggen.</p>
+</li>
+<li><p><strong>Flexibiliteit en aanpasbaarheid</strong>: UML is flexibel en aanpasbaar. Het biedt verschillende diagramtypen en modelleringsconstructies waarmee je processen kunt modelleren op basis van de specifieke vereisten van CROW en asset managers. Je kunt UML-diagrammen aanpassen en uitbreiden met aangepaste elementen of notaties om tegemoet te komen aan specifieke behoeften.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: UML biedt mogelijkheden voor informatiemodellering. Je kunt gegevensobjecten en datamodellen definiëren in UML-diagrammen, zoals klassediagrammen en sequentiediagrammen. Deze diagrammen stellen je in staat om de input- en outputgegevens van het proces expliciet te maken en de relaties tussen gegevens weer te geven.</p>
+</li>
+<li><p><strong>Applicatie-inrichting</strong>: UML is geschikt voor het inrichten van applicaties. Het biedt mogelijkheden om softwareontwerp en implementatie te ondersteunen. Met UML kunnen class diagrams, sequence diagrams en andere diagramtypen worden gebruikt om de structuur, gedrag en interactie van softwarecomponenten en -systemen te modelleren, wat helpt bij het ontwerpen en implementeren van applicaties op basis van het procesmodel.</p>
+</li>
+<li><p><strong>Machine-leesbaarheid</strong>: UML is machine-leesbaar. De gestandaardiseerde notaties en syntaxis van UML kunnen door computers en softwaretools worden geïnterpreteerd. Er zijn verschillende tools beschikbaar die UML-diagrammen kunnen importeren en analyseren, wat de automatische verwerking, analyse en uitvoering van UML-modellen vergemakkelijkt.</p>
+</li>
+</ul>
+</section><section id="idef"><div class="header-wrapper"><h4 id="x3-2-3-idef"><bdi class="secno">3.2.3 </bdi>IDEF</h4><a class="self-link" href="#idef" aria-label="Permalink for Section 3.2.3"></a></div>
+<p><dfn data-lt="IDEF" id="dfn-idef" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">IDEF</dfn>: IDEF (Integrated DEFinition) is een reeks methoden en technieken voor het modelleren en analyseren van processen en systemen. Merk op, dat er binnen IDEF verschillende methodes en notaties beschikbaar zijn voor verschillende doeleinden. <a href="https://www.idef.com/idefo-function_modeling_method/">IDEF0-documentatie</a></p>
+
+<figure id="fig-een-voorbeeld-van-een-uml-visualisatie">
+<img src="./h/media/IDEF_Diagram_Example.jpg" alt="Een voorbeeld van een UML visualisatie" height="600" width="750">
+<figcaption>Figuur <bdi class="figno">4</bdi> <span class="fig-title">Een voorbeeld van een UML visualisatie
+</span></figcaption></figure>
+
+
+
+<ul>
+<li><p><strong>Open standaard</strong>: IDEF is ontwikkeld door de Amerikaanse overheid en wordt beschouwd als een open standaard. De specificaties en documentatie van IDEF zijn beschikbaar voor gebruik en implementatie door verschillende belanghebbenden. Er zijn tools en software beschikbaar die IDEF-diagrammen kunnen maken en bewerken.</p>
+</li>
+<li><p><strong>Volledigheid en nauwkeurigheid</strong>: IDEF biedt een gestructureerde aanpak voor het modelleren van processen en systemen. Het biedt verschillende diagramtypen en notaties om aspecten zoals functies, gegevensstromen, gebeurtenissen, regels en rollen in een proces te modelleren. Hierdoor kunnen processen op een gedetailleerd niveau worden weergegeven en kunnen de benodigde in- en outputgegevens van het proces worden bepaald.</p>
+</li>
+<li><p><strong>Flexibiliteit en aanpasbaarheid</strong>: IDEF is flexibel en aanpasbaar aan verschillende behoeften. Het biedt verschillende diagramtypen, zoals IDEF0 voor functiemodellering, IDEF1X voor datamodellering en IDEF3 voor procesmodellering. Deze diagramtypen kunnen worden aangepast en uitgebreid om aan specifieke vereisten te voldoen.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: IDEF biedt mogelijkheden voor informatiemodellering, vooral met behulp van het diagramtype IDEF1X. Hiermee kunnen entiteiten, attributen, relaties en constraints in een gegevensmodel worden gemodelleerd. Dit helpt bij het expliciet weergeven van input- en outputgegevens en het definiëren van gegevensstructuren en relaties binnen een proces.</p>
+</li>
+<li><p><strong>Applicatie-inrichting</strong>: IDEF kan dienen als basis voor het inrichten van applicaties en systemen. Het biedt een gestructureerd framework om processen te modelleren en te analyseren, waardoor de basis wordt gelegd voor het ontwerpen en implementeren van softwareoplossingen die het proces ondersteunen. Het gebruik van IDEF-diagrammen helpt bij het visualiseren van het proces en het definiëren van functionele vereisten voor de applicatie-inrichting.</p>
+</li>
+<li><p><strong>Machine-leesbaarheid</strong>: IDEF-diagrammen zijn over het algemeen niet direct machine-leesbaar. Ze zijn ontworpen om door mensen te worden begrepen en geïnterpreteerd. Hoewel er mogelijkheden zijn om IDEF-diagrammen om te zetten naar machine-leesbare formaten, zoals XML of RDF, vereist dit vaak handmatige conversie en interpretatie.</p>
+</li>
+</ul>
+<p>Op basis van deze beoordeling voldoet IDEF aan verschillende afwegingscriteria, zoals volledigheid en nauwkeurigheid, flexibiliteit en aanpasbaarheid, en informatiemodellering. Het biedt echter beperkingen op het gebied van machine-leesbaarheid. Het gebruik van IDEF kan nuttig zijn voor het modelleren en analyseren van processen en systemen, vooral op het gebied van functiemodellering en datamodellering. </p>
+</section><section id="petri-nets"><div class="header-wrapper"><h4 id="x3-2-4-petri-nets"><bdi class="secno">3.2.4 </bdi>Petri nets</h4><a class="self-link" href="#petri-nets" aria-label="Permalink for Section 3.2.4"></a></div>
+<p><dfn data-lt="Petri nets" id="dfn-petri-nets" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Petri nets</dfn>: Petri nets, ook wel bekend als Petri-netwerken, zijn een grafische en wiskundige methode voor het modelleren en analyseren van systemen met behulp van gerichte grafieken. </p>
+
+<ul>
+<li><p><strong>Open standaard</strong>: Petri nets maken geen deel uit van een specifieke open standaard, maar ze worden algemeen gebruikt en ondersteund door verschillende tools en software. Er zijn open-source implementaties beschikbaar en er is uitgebreide documentatie beschikbaar om Petri nets te leren en te gebruiken.</p>
+</li>
+<li><p><strong>Volledigheid en nauwkeurigheid</strong>: Petri nets bieden de mogelijkheid om processen en de interacties tussen verschillende componenten van een systeem nauwkeurig en gedetailleerd weer te geven. Ze kunnen complexe systemen modelleren met parallelle processen, gedeelde middelen, synchronisatie en conditionele uitvoering. Petri nets zijn in staat om de volgorde van gebeurtenissen, de status van plaatsen en de overgangen tussen plaatsen vast te leggen.</p>
+</li>
+<li><p><strong>Flexibiliteit en aanpasbaarheid</strong>: Petri nets zijn flexibel en aanpasbaar aan verschillende behoeften. Ze kunnen worden gebruikt voor het modelleren van zowel eenvoudige als complexe systemen en processen. Petri nets kunnen worden uitgebreid en aangepast om specifieke vereisten te ondersteunen, zoals het toevoegen van nieuwe plaatsen, overgangen of verbindingsstructuren.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: Petri nets richten zich voornamelijk op de modellering van processen en interacties tussen componenten, maar ze bieden beperkte mogelijkheden voor het expliciet modelleren van input- en outputgegevens of het definiëren van gedetailleerde datamodellen. Petri nets kunnen echter worden gebruikt in combinatie met andere modelleringstechnieken, zoals UML-activiteitendiagrammen, om de benodigde informatie en de structuur van gegevens beter weer te geven.</p>
+</li>
+<li><p><strong>Applicatie-inrichting</strong>: Petri nets kunnen dienen als basis voor het ontwerpen en inrichten van applicaties en systemen. Ze bieden een visuele weergave van processen en interacties, waardoor ontwerpers de juiste functionaliteit kunnen bepalen om de systemen te ondersteunen. Petri nets kunnen worden gebruikt voor het ontwerpen van workflowmanagement-systemen, simulaties en andere toepassingen waarbij de proceslogica en interacties belangrijk zijn.</p>
+</li>
+<li><p><strong>Machine-leesbaarheid</strong>: Petri nets kunnen machine-leesbaar zijn, afhankelijk van de gebruikte tooling en software. Er zijn verschillende tools beschikbaar die Petri nets kunnen analyseren, simuleren en verifiëren. Deze tools kunnen de structuur van Petri nets interpreteren en automatisch bepaalde eigenschappen van het systeem afleiden, zoals deadlocks, liveness en synchronisatieproblemen.</p>
+</li>
+</ul>
+<p>Op basis van deze beoordeling voldoen Petri nets aan verschillende afwegingscriteria, zoals volledigheid en nauwkeurigheid, flexibiliteit en aanpasbaarheid, en applicatie-inrichting. Ze hebben echter beperkingen op het gebied van informatiemodellering en vereisen vaak gespecialiseerde kennis en tools voor machinale verwerking en analyse.</p>
+</section><section id="value-stream-mapping"><div class="header-wrapper"><h4 id="x3-2-5-value-stream-mapping"><bdi class="secno">3.2.5 </bdi>Value stream mapping</h4><a class="self-link" href="#value-stream-mapping" aria-label="Permalink for Section 3.2.5"></a></div>
+<p><dfn data-lt="Value stream mapping" id="dfn-value-stream-mapping" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Value stream mapping</dfn>: Value Stream Mapping (VSM) is een methode voor procesmodellering die zich richt op het visualiseren en analyseren van de stroom van waarde door een proces of waardestroom. </p>
+
+
+<ul>
+<li><p><strong>Open standaard</strong>: Value Stream Mapping is geen specifieke open standaard, maar het is een populaire methode die wordt gebruikt in Lean Management en Continuous Improvement. Er zijn verschillende bronnen, boeken en online materiaal beschikbaar om VSM te leren en toe te passen. Het is een breed geaccepteerde methode in de industrie.</p>
+</li>
+<li><p><strong>Volledigheid en nauwkeurigheid</strong>: Value Stream Mapping biedt de mogelijkheid om processen op een gedetailleerd niveau te modelleren en de stroom van waarde door het proces te visualiseren. Het identificeert verschillende activiteiten, stappen, wachttijden, voorraden en informatiestromen binnen het proces. Hierdoor kunnen inefficiënties, verspillingen en knelpunten worden geïdentificeerd en geanalyseerd.</p>
+</li>
+<li><p><strong>Flexibiliteit en aanpasbaarheid</strong>: Value Stream Mapping is flexibel en aanpasbaar aan verschillende behoeften. Het kan worden toegepast op verschillende soorten processen, zowel in de productie- als de dienstensector. VSM kan worden aangepast aan de specifieke vereisten van een organisatie of een proces, zoals het toevoegen van specifieke metingen, gegevens of analytische tools.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: Value Stream Mapping richt zich voornamelijk op het modelleren van de stroom van waarde door het proces, inclusief de materiaalstroom en informatiestroom. Het legt de nadruk op het identificeren van knelpunten, verspillingen en verbetermogelijkheden. Hoewel het geen gedetailleerde modellering van input- en outputgegevens biedt, kan het inzicht geven in de informatiestromen binnen het proces.</p>
+</li>
+<li><p><strong>Applicatie-inrichting</strong>: Value Stream Mapping kan worden gebruikt als basis voor het inrichten van applicaties en systemen die gericht zijn op procesverbetering en Lean Management. Door het identificeren van verspillingen, inefficiënties en verbetermogelijkheden kunnen applicaties worden ontwikkeld om deze uitdagingen aan te pakken en de procesprestaties te verbeteren.</p>
+</li>
+<li><p><strong>Machine-leesbaarheid</strong>: Value Stream Mapping is primair een visuele methode die door mensen wordt begrepen en geïnterpreteerd. Het is geen direct machine-leesbare methode, maar de resultaten van VSM kunnen worden gedocumenteerd en gedeeld in digitale vorm. Het is mogelijk om de bevindingen en verbeteringen die voortkomen uit VSM-analyses te vertalen naar machine-leesbare formats of te integreren met andere digitale tools.</p>
+</li>
+</ul>
+<p>Op basis van deze beoordeling voldoet Value Stream Mapping aan verschillende afwegingscriteria, zoals volledigheid en nauwkeurigheid, flexibiliteit en aanpasbaarheid, en applicatie-inrichting. Het heeft beperkingen op het gebied van gedetailleerde informatiemodellering en directe machine-leesbaarheid, maar het biedt waardevolle inzichten en analytische mogelijkheden voor het verbeteren van processen en waardestromen. </p>
+</section><section id="visi"><div class="header-wrapper"><h4 id="x3-2-6-visi"><bdi class="secno">3.2.6 </bdi>VISI</h4><a class="self-link" href="#visi" aria-label="Permalink for Section 3.2.6"></a></div>
+<p><dfn data-lt="VISI" id="dfn-visi" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">VISI</dfn>: VISI (Voorwaarden scheppend Informatie Systematiek Industriebouw) is een standaard en methode ontwikkeld door het BIM Loket voor communicatie en samenwerking binnen de gebouwde omgeving.  </p>
+
+<ul>
+<li><p><strong>Open standaard</strong>: VISI is een open standaard die beschikbaar is voor gebruik in de bouw- en infrasector. Het wordt beheerd door DigiGO en is vrij beschikbaar voor gebruik door alle belanghebbenden. Er zijn richtlijnen en documentatie beschikbaar om VISI te implementeren en te gebruiken.</p>
+</li>
+<li><p><strong>Volledigheid en nauwkeurigheid</strong>: VISI biedt een gestructureerd kader voor communicatie en samenwerking binnen projecten. Het legt de nadruk op het definiëren van rollen, verantwoordelijkheden, processen en informatiestromen tussen verschillende belanghebbenden. Hierdoor kunnen processen op een gedetailleerd niveau worden gemodelleerd en kunnen de benodigde in- en outputgegevens van het proces worden bepaald. De beperking is daarbij, dat het uitgaat van <em>berichten die heen- en weer gaan tussen twee rolhouders</em> en besluiten nemen. Het is niet geschikt om een inhoudelijk gedreven werkproces te beschrijven waarin één of rolhouder meerdere stappen doorloopt.</p>
+</li>
+<li><p><strong>Flexibiliteit en aanpasbaarheid</strong>: VISI biedt grote flexibiliteit en aanpasbaarheid in de beschrijving van processen.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: VISI legt de nadruk op projectspecifieke informatiemodellering en het gestructureerd uitwisselen van informatie tussen belanghebbenden. Het biedt een framework voor het definiëren van berichten en bijbehorende documenten in blijagen binnen een project. Hierdoor kunnen de input- en outputgegevens van het proces expliciet en gestructureerd worden vastgelegd. De beperking is hierbij, dat de informatie per project wordt gedefinieerd, in XML berichten. De relatie tussen de data in het bericht en het informatiemodel is niet machinaal achterhaalbaar, waardoor per bericht een taalbinding zal moeten worden gemaakt om de gegevens te interpreteren.</p>
+</li>
+<li><p><strong>Applicatie-inrichting</strong>: VISI kan worden gebruikt voor het inrichten van applicaties en systemen die communicatie en samenwerking binnen bouw- en infraprojecten ondersteunen. Het biedt een basis voor het ontwerpen en implementeren van softwareoplossingen die voldoen aan de VISI-standaard. Door de procesmodellen van VISI als leidraad te nemen, kunnen applicaties worden ontwikkeld die de juiste functionaliteit bieden om de processen te ondersteunen. De beperking is daarbij, dat er slechts een beperkt aantal Nederlandse aanbieders van VISI-software zijn en dat de standaardisatie-organisatie het nog niet mogelijk maak om software te certificeren die slechts een beperkt aantal processen ondersteunt. </p>
+</li>
+<li><p><strong>Machine-leesbaarheid</strong>: VISI is ontwikkeld met het oog op digitale uitwisseling en communicatie tussen verschillende systemen. Hierdoor kan een VISI raamwerk (de VISI procesbeschrijving)  in digitale vorm worden gelezen en verwerkt door machines. Het maakt gebruik van gestructureerde gegevensformaten en kan worden geïntegreerd met andere systemen om geautomatiseerde gegevensuitwisseling mogelijk te maken.</p>
+</li>
+</ul>
+<p>Op basis van deze evaluatie voldoet VISI aan verschillende afwegingscriteria, zoals open standaard, volledigheid en nauwkeurigheid, informatiemodellering en machine-leesbaarheid. Het biedt echter ook uitdagingen op gebieden zoals flexibiliteit en aanpasbaarheid, evenals applicatie-inrichting.</p>
+</section></section><section id="visualisatiemethoden"><div class="header-wrapper"><h3 id="x3-3-visualisatiemethoden"><bdi class="secno">3.3 </bdi>Visualisatiemethoden</h3><a class="self-link" href="#visualisatiemethoden" aria-label="Permalink for Section 3.3"></a></div>
+<section id="swimlane"><div class="header-wrapper"><h4 id="x3-3-1-swimlane"><bdi class="secno">3.3.1 </bdi>Swimlane</h4><a class="self-link" href="#swimlane" aria-label="Permalink for Section 3.3.1"></a></div>
+<p><dfn data-lt="Swimlanediagram" id="dfn-swimlanediagram" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Swimlanediagram</dfn>: Swimlanediagrammen, ook wel bekend als zwembaandiagrammen, zijn visuele diagrammen die gebruikt worden om processen en de betrokken actoren of afdelingen weer te geven. </p>
+
+<figure id="fig-een-voorbeeld-van-een-swimlane-diagram">
+<img src="./h/media/Approvals.jpg" alt="Een voorbeeld van een swimlane diagram" height="580" width="725">
+<figcaption>Figuur <bdi class="figno">5</bdi> <span class="fig-title">Een voorbeeld van een swimlane diagram
+</span></figcaption></figure>
+
+<p>Swimlanes </p>
+</section><section id="dataflowdiagrammen"><div class="header-wrapper"><h4 id="x3-3-2-dataflowdiagrammen"><bdi class="secno">3.3.2 </bdi>Dataflowdiagrammen</h4><a class="self-link" href="#dataflowdiagrammen" aria-label="Permalink for Section 3.3.2"></a></div>
+<p><dfn data-lt="Dataflowdiagrammen" id="dfn-dataflowdiagrammen" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Dataflowdiagrammen</dfn>: Dataflowdiagrammen zijn visuele modellen die de stromen van gegevens en de verwerking van gegevens binnen een systeem of proces weergeven.</p>
+
+<p>Dataflow Ontology</p>
+<ul>
+<li><p>Documentatie: <a href="https://w3id.org/dataflows/ontology/">Dataflow Ontology</a></p>
+</li>
+<li><p>Relatie met procesmodel: Richt zich op het modelleren van gegevensstromen en -processen, wat relevant is voor dataflowdiagrammen.</p>
+</li>
+<li><p><strong>Open standaard</strong>: Dataflowdiagrammen maken geen deel uit van een specifieke open standaard, maar ze zijn een veelgebruikte en algemeen geaccepteerde methode voor het modelleren van gegevensstromen. Ze worden ondersteund door verschillende tools en software die dataflowdiagrammen kunnen maken en bewerken.</p>
+</li>
+<li><p><strong>Volledigheid en nauwkeurigheid</strong>: Dataflowdiagrammen bieden de mogelijkheid om gegevensstromen op een gestructureerde manier weer te geven en de verwerking van gegevens te identificeren. Ze kunnen verschillende niveaus van detail bevatten, afhankelijk van de complexiteit van het systeem of het proces. Door het gebruik van symbolen zoals pijlen en processen kunnen de gegevensstromen en de interacties tussen verschillende componenten van het systeem of het proces worden geïdentificeerd.</p>
+</li>
+<li><p><strong>Flexibiliteit en aanpasbaarheid</strong>: Dataflowdiagrammen zijn flexibel en aanpasbaar aan verschillende behoeften. Ze kunnen worden gebruikt voor het modelleren van zowel eenvoudige als complexe gegevensstromen. Dataflowdiagrammen kunnen worden aangepast en uitgebreid om aan specifieke vereisten te voldoen, zoals het toevoegen van nieuwe gegevensstromen, het identificeren van specifieke verwerkingsstappen of het verfijnen van de gegevensuitwisseling tussen componenten.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: Dataflowdiagrammen richten zich op het modelleren van gegevensstromen en de verwerking van gegevens, maar ze bieden beperkte mogelijkheden voor het expliciet modelleren van input- en outputgegevens of het definiëren van gedetailleerde datamodellen. Ze kunnen echter worden gebruikt in combinatie met andere modelleringstechnieken, zoals entity-relationship diagrams, om de benodigde informatie en de structuur van gegevens beter weer te geven.</p>
+</li>
+<li><p><strong>Applicatie-inrichting</strong>: Dataflowdiagrammen kunnen dienen als basis voor het inrichten van applicaties en systemen. Ze bieden een visuele weergave van de gegevensstromen en de verwerking van gegevens, waardoor de ontwerpers van applicaties de juiste functionaliteit kunnen bepalen om de gegevensstromen en de interactie tussen componenten te ondersteunen.</p>
+</li>
+<li><p><strong>Machine-leesbaarheid</strong>: Dataflowdiagrammen zijn over het algemeen niet direct machine-leesbaar. Ze zijn ontworpen om door mensen te worden begrepen en geïnterpreteerd. Hoewel er mogelijkheden zijn om dataflowdiagrammen om te zetten naar machine-leesbare formats, vereist dit vaak handmatige conversie en interpretatie.</p>
+</li>
+</ul>
+<p>Op basis van deze beoordeling voldoen dataflowdiagrammen aan verschillende afwegingscriteria, zoals volledigheid en nauwkeurigheid, flexibiliteit en aanpasbaarheid, en applicatie-inrichting. Ze hebben echter beperkingen op het gebied van informatiemodellering en machine-leesbaarheid. Het gebruik van dataflowdiagrammen kan nuttig zijn voor het visualiseren van gegevensstromen en de verwerking van gegevens, maar voor gedetailleerde informatiemodellering en machinale verwerking kunnen andere methoden zoals UML of BPMN meer geschikt zijn.</p>
+</section><section id="flowcharts"><div class="header-wrapper"><h4 id="x3-3-3-flowcharts"><bdi class="secno">3.3.3 </bdi>Flowcharts</h4><a class="self-link" href="#flowcharts" aria-label="Permalink for Section 3.3.3"></a></div>
+<p><dfn data-lt="Flowcharts" id="dfn-flowcharts" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Flowcharts</dfn>: Flowcharts zijn visuele diagrammen die gebruikt worden om processen, beslissingen en stromen van activiteiten weer te geven. </p>
+ 
+
+<ul>
+<li><p><strong>Open standaard</strong>: Flowcharts maken geen deel uit van een specifieke open standaard. Ze zijn echter een algemeen aanvaarde en veelgebruikte methode voor procesmodellering, ondersteund door verschillende tools en software die flowcharts kunnen maken en bewerken.</p>
+</li>
+<li><p><strong>Volledigheid en nauwkeurigheid</strong>: Flowcharts bieden de mogelijkheid om processen op verschillende niveaus van detail weer te geven. Ze kunnen worden gebruikt om stappen, beslissingen, gegevensstromen en rollen in een proces te modelleren. De mate van volledigheid en nauwkeurigheid hangt af van de complexiteit en gedetailleerdheid van de flowchart die wordt gemaakt.</p>
+</li>
+<li><p><strong>Flexibiliteit en aanpasbaarheid</strong>: Flowcharts zijn flexibel en aanpasbaar aan verschillende behoeften. Ze kunnen worden gebruikt om zowel eenvoudige als complexe processen te modelleren. Flowcharts bieden verschillende symbolen en notaties die kunnen worden aangepast en uitgebreid om aan specifieke vereisten te voldoen.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: Flowcharts kunnen beperkt zijn als het gaat om het modelleren van informatiestromen en het expliciet weergeven van input- en outputgegevens. Hoewel het mogelijk is om gegevensstromen in een flowchart op te nemen, is de nadruk meestal gericht op de sequentie van activiteiten en beslissingen in het proces.</p>
+</li>
+<li><p><strong>Applicatie-inrichting</strong>: Flowcharts kunnen dienen als basis voor het inrichten van applicaties en systemen, hoewel ze meestal gebruikt worden als een visueel hulpmiddel om processen te begrijpen en te communiceren. Het kan nuttig zijn bij het ontwerpen van applicaties door een visuele weergave van het proces te bieden, maar aanvullende documentatie en specificaties zijn vaak nodig om de applicatie-inrichting in detail te definiëren.</p>
+</li>
+<li><p><strong>Machine-leesbaarheid</strong>: Flowcharts zijn over het algemeen niet direct machine-leesbaar. Ze zijn ontworpen om door mensen te worden begrepen en geïnterpreteerd. Hoewel flowchart-diagrammen kunnen worden omgezet naar machine-leesbare formats, zoals BPMN of UML, is dit meestal een handmatig proces.</p>
+</li>
+</ul>
+<p>Op basis van deze beoordeling voldoen flowcharts aan verschillende afwegingscriteria, zoals flexibiliteit en aanpasbaarheid, volledigheid en nauwkeurigheid. Ze hebben echter beperkingen op het gebied van informatiemodellering en machine-leesbaarheid. Het gebruik van flowcharts kan nuttig zijn voor eenvoudige processen en communicatiedoeleinden, maar voor complexere processen waarbij informatiemodellering en machine-leesbaarheid cruciaal zijn, kunnen andere methoden zoals BPMN, UML of EPC meer geschikt zijn. </p>
+</section><section id="rasci"><div class="header-wrapper"><h4 id="x3-3-4-rasci"><bdi class="secno">3.3.4 </bdi>RASCI</h4><a class="self-link" href="#rasci" aria-label="Permalink for Section 3.3.4"></a></div>
+<p><dfn data-lt="RASCI" id="dfn-rasci" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">RASCI</dfn>: RASCI (Responsible, Accountable, Supportive, Consulted, Informed) is een methode voor het definiëren van rollen en verantwoordelijkheden binnen een proces of project. </p>
+
+
+<ul>
+<li><p><strong>Open standaard</strong>: RASCI is geen formele open standaard zoals BPMN of UML. Het is echter een veelgebruikte methode die wijdverspreid is en gemakkelijk toegankelijk is. Er zijn geen beperkingen op het gebruik van RASCI en er zijn geen specifieke richtlijnen of documentatie vereist om het toe te passen.</p>
+</li>
+<li><p><strong>Volledigheid en nauwkeurigheid</strong>: RASCI biedt een gestructureerde aanpak om rollen en verantwoordelijkheden binnen een proces of project te definiëren. Het maakt onderscheid tussen verschillende rollen, zoals Responsible (verantwoordelijk), Accountable (eindverantwoordelijk), Supportive (ondersteunend), Consulted (geconsulteerd) en Informed (geïnformeerd). Hierdoor kunnen processen op een gedetailleerd niveau worden gemodelleerd en kunnen de benodigde rollen en verantwoordelijkheden van het proces worden bepaald.</p>
+</li>
+<li><p><strong>Flexibiliteit en aanpasbaarheid</strong>: RASCI is flexibel en aanpasbaar aan verschillende behoeften. Het kan worden toegepast op verschillende processen en projecten, ongeacht de complexiteit of het domein. De specifieke rollen en verantwoordelijkheden kunnen worden aangepast en afgestemd op de specifieke context van de organisatie of het project.</p>
+</li>
+<li><p><strong>Informatiemodellering</strong>: RASCI richt zich niet specifiek op informatiemodellering. Het biedt geen gestructureerde aanpak voor het expliciet weergeven van input- en outputgegevens of het modelleren van informatiestromen. Het concentreert zich voornamelijk op de toewijzing van rollen en verantwoordelijkheden binnen het proces.</p>
+</li>
+<li><p><strong>Applicatie-inrichting</strong>: RASCI kan dienen als basis voor het inrichten van applicaties en systemen, met name op het gebied van rollen en autorisaties. Het helpt bij het definiëren van de benodigde rollen en verantwoordelijkheden die moeten worden ondersteund door de applicatie. Door RASCI te gebruiken als leidraad kunnen applicaties worden ontworpen en geïmplementeerd met de juiste functionaliteit om de rollen en verantwoordelijkheden binnen het proces te ondersteunen.</p>
+</li>
+<li><p><strong>Machine-leesbaarheid</strong>: RASCI is over het algemeen niet direct machine-leesbaar. Het is een methode die is ontworpen om door mensen te worden begrepen en geïnterpreteerd. Hoewel het mogelijk is om RASCI-gegevens in een machine-leesbaar formaat te coderen, vereist dit vaak handmatige conversie en interpretatie.</p>
+</li>
+</ul>
+<p>Op basis van deze beoordeling voldoet RASCI aan verschillende afwegingscriteria, zoals volledigheid en nauwkeurigheid, flexibiliteit en aanpasbaarheid, en applicatie-inrichting. Het biedt echter beperkingen op het gebied van informatiemodellering en machine-leesbaarheid. Het gebruik van RASCI is vooral relevant voor het definiëren van rollen en verantwoordelijkheden binnen een proces of project.</p>
+</section></section></section> 
+  <section class="informative" id="afweging"><div class="header-wrapper"><h2 id="x4-afweging"><bdi class="secno">4. </bdi>Afweging</h2><a class="self-link" href="#afweging" aria-label="Permalink for Section 4."></a></div><p><em>Dit onderdeel is niet normatief.</em></p>
+<section id="inleiding-1"><div class="header-wrapper"><h3 id="x4-1-inleiding"><bdi class="secno">4.1 </bdi>Inleiding</h3><a class="self-link" href="#inleiding-1" aria-label="Permalink for Section 4.1"></a></div>
+<p>In dit hoofstuk wordt een afweging gemaakt op basis van de criteria, en wordt een procesmodelleringsmethode gekozen. </p>
+</section><section id="vergelijking"><div class="header-wrapper"><h3 id="x4-2-vergelijking"><bdi class="secno">4.2 </bdi>Vergelijking</h3><a class="self-link" href="#vergelijking" aria-label="Permalink for Section 4.2"></a></div>
+<table>
+<thead>
+<tr>
+<th>Methode</th>
+<th>Open standaard</th>
+<th>Volledigheid en nauwkeurigheid</th>
+<th>Flexibiliteit en aanpasbaarheid</th>
+<th>Informatiemodellering</th>
+<th>Applicatie-inrichting</th>
+<th>Machine-leesbaarheid</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BPMN</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td>UML</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td>IDEF</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Petri nets</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Value stream mapping</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>VISI</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+</tbody></table>
+</section><section id="input-stakeholders"><div class="header-wrapper"><h3 id="x4-3-input-stakeholders"><bdi class="secno">4.3 </bdi>Input stakeholders</h3><a class="self-link" href="#input-stakeholders" aria-label="Permalink for Section 4.3"></a></div>
+<p>Een netwerk van DigiGO, de Bouwdelta, geeft de volgende reacties:</p>
+<ul>
+<li>Bij een grote asset owner worden processen gevisualiseerd in een gedetailleerde RASCI [Redacteur: bijgevoegd is een swimlane diagram] icm IAM asset management methodiek en op Prince2 gebaseerde project methodiek gemodelleerd in een BPMN tool namelijk [naam tool]. Onze afweging voor het model en de visualisatie daarvan zat hem voornamelijk in de leesbaarheid voor de business. </li>
+<li>Reseller van software: Wij werken met Enterprise Architect en die ondersteunt al dat soort talen. Het zijn dan ook echt objecten i.p.v. figuren of plaatjes. Een object aanpassen op één plaats betekend dus dat al je schema's en overzichten bijgewerkt zijn. Ik vind voor processen BPMN het fijnst werken. Ook goed leesbaar voor de klant. Zodra het meer naar product ontwikkeling gaat en user-cases moet uitwerken kun je beter UML gebruiken.</li>
+<li>bij <abbr title="Digitaal Stelsel Gebouwde Omgeving">DSGO</abbr> is ook een architectuur tool in gebruik namelijk [naam tool]. Stelt je in staat om volgens Archimate de hele context te modelleren én heeft een module om tot BPMN detail proces omschrijving te gaan. Let wel even op, deze tool was toen ik er mee werkte niet goed open om die detailmodellen er weer uit te halen. Kunt ook denken aan Archi zie b.v. <a href="https://github.com/archimatetool/archi/issues/327">deze discussie op Github</a></li>
+<li>Een adviseur: BPMN is de meest herkenbare in mijn ervaring, werd gebruikt om de basis in de procesmanagement systemen van de bedrijven en projecten wat ik gewerkt heb en ik gebruik het zelf altijd als ik een nieuwe proces wil beschrijven. </li>
+<li>Een adviseur: BPMN hanteren wij ook in ons Europese project voor permitd </li>
+<li>Een reseller van software: Zeker als je het doet met een swimlane diagram. Werkt echt super goed. Ideaal om rollen en processen in beeld te krijgen. </li>
+<li>Zie ook de <a href="https://afsprakenstelseldsgo.atlassian.net/wiki/spaces/DSGO/overview">afspraken voor het Digitaal Stelsel Gebouwde omgeving</a>.</li>
+<li><a href="https://over.isso.nl/nieuws/handboek-deel-9-mk-go">MKGO</a> is een modelstructuur voor referentieprocessen en standaard taken.</li>
+</ul>
+</section><section id="keuze-methode"><div class="header-wrapper"><h3 id="x4-4-keuze-methode"><bdi class="secno">4.4 </bdi>Keuze methode</h3><a class="self-link" href="#keuze-methode" aria-label="Permalink for Section 4.4"></a></div>
+<p>De twee standaarden die het best scoren op de criteria zijn BPMN en UML:</p>
+<ul>
+<li><strong>BPMN</strong> legt de focus op het modelleren en visualiseren van bedrijfsprocessen, waarbij de nadruk ligt op het vastleggen van de stappen, beslissingen, gegevensstromen en betrokken partijen.</li>
+<li><strong>UML</strong>: legt de focus op het modelleren van objectgeoriënteerde software en systemen, waarbij verschillende diagramtypen worden gebruikt om structuur, gedrag en interacties weer te geven.</li>
+</ul>
+<p>Voor het doel  "<strong>referentieprocessen</strong>" is de focus van BPMN op het vastleggen van stappen en beslissingen de meest geschikte.</p>
+<p>Voor het doel  "<strong>informatiemodellering</strong>" is de focus van BPMN op gegevensstromen de meest geschikte.</p>
+<p>Voor het doel "<strong>Applicatie-ontwerp en implementatie</strong>" geldt, dat de focus van UML het meest geschikt is. De keuze voor het modelleren van softwarefunctionaliteiten ligt bij marktpartijen, niet bij CROW. De input hiervoor zijn de referentieprocessen van CROW, waarbij een softwareleverancier zelf bepaalt hoeveel diepgang en specials onderdeel zijn van de software.</p>
+<p>Daarom wordt BPMN gekozen.</p>
+</section><section id="keuze-diepgang"><div class="header-wrapper"><h3 id="x4-5-keuze-diepgang"><bdi class="secno">4.5 </bdi>Keuze diepgang</h3><a class="self-link" href="#keuze-diepgang" aria-label="Permalink for Section 4.5"></a></div>
+<p>Door BPMN te kiezen, bestaat nog flexibiliteit in de keuze welk detailniveau en welke mate van complexiteit nodig is. Die keuze wordt nog niet op voorhand vastgelegd, en kan per doel verschillen.</p>
+</section></section> 
+  <section class="informative" id="uitwerking"><div class="header-wrapper"><h2 id="x5-uitwerking"><bdi class="secno">5. </bdi>Uitwerking</h2><a class="self-link" href="#uitwerking" aria-label="Permalink for Section 5."></a></div><p><em>Dit onderdeel is niet normatief.</em></p>
+<section id="inleiding-2"><div class="header-wrapper"><h3 id="x5-1-inleiding"><bdi class="secno">5.1 </bdi>Inleiding</h3><a class="self-link" href="#inleiding-2" aria-label="Permalink for Section 5.1"></a></div>
+<p>Dit hoofdstuk geeft de uitwerking van de gekozen methode:</p>
+<ol>
+<li> <b>Welke informatie</b> over het proces in een informatiemodel wordt vastgelgd;
+</li><li>Bepalen hoe de processen <b>als data</b> gepubliceerd worden;
+</li><li> Bepalen hoe de processen <b>gevisualiseerd</b> worden,
+</li><li> Bepalen hoe de <b>onderbouwing</b> van een proces gepubliceerd wordt.</li></ol>
+
+
+</section><section id="procesmodel"><div class="header-wrapper"><h3 id="x5-2-procesmodel"><bdi class="secno">5.2 </bdi>Procesmodel</h3><a class="self-link" href="#procesmodel" aria-label="Permalink for Section 5.2"></a></div>
+<section id="informatiemodel"><div class="header-wrapper"><h4 id="x5-2-1-informatiemodel"><bdi class="secno">5.2.1 </bdi>Informatiemodel</h4><a class="self-link" href="#informatiemodel" aria-label="Permalink for Section 5.2.1"></a></div>
+<p>Voor BPMN is nog geen informatiemodel beschikbaar in linked data, daarom publiceren wij deze, als afgeleide van de NEN 2660-2, met zowel een begrippenkader in SKOS als een ontologie in RDF-OWL .</p>
+<p><dfn data-lt="NEN2660-2:2022" id="dfn-nen2660-2-2022" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">NEN2660-2:2022</dfn>:NEN2660-2 is een praktische invulling van NEN2660_1. In deel 1 zijn meer theoretische/conceptuele en bouw- en taalonafhankelijke modelleerpatronen vastgelegd. Deze norm is vrij beschikbaar bij de NEN en is ontwikkeld in een samenwerking tussen overheden, adviesbureau's en kennisinstituten. Het heeft als doel de standaard te zijn voor de ontwikkeling van ontologieën in de gebouwde omgeving.</p><p></p>
+</section><section id="online-publicatie"><div class="header-wrapper"><h4 id="x5-2-2-online-publicatie"><bdi class="secno">5.2.2 </bdi>Online publicatie</h4><a class="self-link" href="#online-publicatie" aria-label="Permalink for Section 5.2.2"></a></div>
+<p>Voor rechtstreeks vanuit systemen of het internet zoeken in het informatiemodel wordt deze gepubliceerd op een SPARQL-endpoint.</p>
+<p><dfn data-lt="SPARQL" id="dfn-sparql" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">SPARQL</dfn>: SPARQL (S PARQL P rotocol A nd R DF Q uery L anguage) is een RDF-zoektaal ( querytaal) die gebruikt wordt om RDF-gebaseerde data te bevragen door middel van zoekopdrachten (queries). Met deze zoektaal is het mogelijk om informatie op te vragen voor applicaties op het semantisch web. (<a href="https://nl.wikipedia.org/wiki/SPARQL">Bron:Wikipedia</a>) </p>
+
+</section><section id="downloads"><div class="header-wrapper"><h4 id="x5-2-3-downloads"><bdi class="secno">5.2.3 </bdi>Downloads</h4><a class="self-link" href="#downloads" aria-label="Permalink for Section 5.2.3"></a></div>
+<p>Voor het verkennen van het informatiemodel en sommige toepassingen kan het handig zijn om de code rechtstreeks te kunnen inzien en downloaden, dit doen we in Turtle formaat:</p>
+<p><dfn data-lt="Turtle" id="dfn-turtle" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Turtle</dfn>:"Terse RDF Triple Language", een bestandsformaat (Informatie technologie) (<a href="https://nl.wikipedia.org/wiki/Turtle_(syntaxis)">Bron:Wikipedia</a>). Turtle is een serialisatieformaat voor het Resource Description Framework (RDF), een universele taal ("Linked Data") voor het weergeven van informatie op het Web.
+
+</p></section><section id="wijzigingsbeheer"><div class="header-wrapper"><h4 id="x5-2-4-wijzigingsbeheer"><bdi class="secno">5.2.4 </bdi>Wijzigingsbeheer</h4><a class="self-link" href="#wijzigingsbeheer" aria-label="Permalink for Section 5.2.4"></a></div>
+<p>Een omgeving voor wijzigingsbeheer wordt in gericht om feedback te kunnen ophalen van gebruikers en deze beheerst te verwerken tot wijzigingen. Dat moet ervoor zorgen dat afwegingen in het beheer van het informatiemodel transparant zijn en dat de reden voor wijzigingen achterhaald kan worden in wijzigingsdocumentatie. Gebruikers kunnen op [Github](GitHub Stichting-CROW/procesmodel/issues) issues aandragen voor bug/features/aanbevelingen op het informatiemodel en de documentatie. Bij de concept-release van documentatie in ReSpec wordt de mogelijkheid geboden om deze te reviewen met annotaties in de kantlijn.</p>
+</section><section id="documentatie"><div class="header-wrapper"><h4 id="x5-2-5-documentatie"><bdi class="secno">5.2.5 </bdi>Documentatie</h4><a class="self-link" href="#documentatie" aria-label="Permalink for Section 5.2.5"></a></div>
+<section id="onderbouwing"><div class="header-wrapper"><h5 id="x5-2-5-1-onderbouwing"><bdi class="secno">5.2.5.1 </bdi>Onderbouwing</h5><a class="self-link" href="#onderbouwing" aria-label="Permalink for Section 5.2.5.1"></a></div>
+<p>Voorliggend document betreft de documentatie van de onderbouwing van de keuze voor het procesmodel.</p>
+</section><section id="code-documentatie"><div class="header-wrapper"><h5 id="x5-2-5-2-code-documentatie"><bdi class="secno">5.2.5.2 </bdi>Code-documentatie</h5><a class="self-link" href="#code-documentatie" aria-label="Permalink for Section 5.2.5.2"></a></div>
+<p>In de Code-documentatie worden de belangrijkste concepten, relaties en attributen van het informatiemodel toegelicht voor gebruikers. </p>
+</section><section id="viewer"><div class="header-wrapper"><h5 id="x5-2-5-3-viewer"><bdi class="secno">5.2.5.3 </bdi>Viewer</h5><a class="self-link" href="#viewer" aria-label="Permalink for Section 5.2.5.3"></a></div>
+<p>Voor eindgebruikers wordt een eenvoudige viewer omgeving ingericht waarin door de concepten en relaties in het informatiemodel heengebladerd kan worden.</p>
+</section></section></section><section id="proces"><div class="header-wrapper"><h3 id="x5-3-proces"><bdi class="secno">5.3 </bdi>Proces</h3><a class="self-link" href="#proces" aria-label="Permalink for Section 5.3"></a></div>
+<p>Voor een individueel werkproces gelden dezelfde publicatievormen als voor het informatiemodel. Daarnaast gelden onderstaande extra's.</p>
+<section id="distributievormen"><div class="header-wrapper"><h4 id="x5-3-1-distributievormen"><bdi class="secno">5.3.1 </bdi>Distributievormen</h4><a class="self-link" href="#distributievormen" aria-label="Permalink for Section 5.3.1"></a></div>
+<p>Het beheren van een proces als data en niet als document biedt de mogelijkheid om het overzichtelijk en transparant te doen, maar voor het ook te distribueren in verschillende vormen. LinkedData (RDF volgens de NEN2660-2), CSV en PDF behoren zodoende tot de opties. Hiermee is duurzame toegang en transparantie geborgd en kunnen op allerlei (toekomstige) vragen worden ingespeeld. </p>
+</section><section id="visualisatie"><div class="header-wrapper"><h4 id="x5-3-2-visualisatie"><bdi class="secno">5.3.2 </bdi>Visualisatie</h4><a class="self-link" href="#visualisatie" aria-label="Permalink for Section 5.3.2"></a></div>
+<p>Het procesmodel kan worden gebruikt om het proces visueel weer te geven. Het kan worden gebruikt in presentaties, trainingen of rapporten om een duidelijk beeld te geven van de processtappen, de volgorde van activiteiten en de interacties tussen de betrokken partijen. Dit vergemakkelijkt het begrip van het proces en kan dienen als een communicatiemiddel voor het delen van kennis over het proces.</p>
+<p>De weergave als RASCI is voor eenvoudige toepassingen de meest logische. 
+Als een kennisproduct een gedetailleerdere weergave vraagt kunnen schema's worden opgesteld met de visualisatievormen die bij BPMN beschikbaar zijn. </p>
+</section><section id="documentatie-0"><div class="header-wrapper"><h4 id="x5-3-3-documentatie"><bdi class="secno">5.3.3 </bdi>Documentatie</h4><a class="self-link" href="#documentatie-0" aria-label="Permalink for Section 5.3.3"></a></div>
+<section id="onderbouwing-0"><div class="header-wrapper"><h5 id="x5-3-3-1-onderbouwing"><bdi class="secno">5.3.3.1 </bdi>Onderbouwing</h5><a class="self-link" href="#onderbouwing-0" aria-label="Permalink for Section 5.3.3.1"></a></div>
+<p>De <b>onderbouwing</b> van een proces legt de logica, de beslissingen en de verantwoordelijkheden binnen het proces vast, waardoor er een gedocumenteerde basis is voor het proces. Dit kan, als het als referentieproces wordt gebruikt in een organisatie, van belang zijn voor audits, kwaliteitsborging en het aantonen van naleving van regelgeving. Daarnaast wordt onderbouwd, op basis van welke standaard het proces gemodelleerd is. </p>
+</section><section id="code-documentatie-0"><div class="header-wrapper"><h5 id="x5-3-3-2-code-documentatie"><bdi class="secno">5.3.3.2 </bdi>Code-documentatie</h5><a class="self-link" href="#code-documentatie-0" aria-label="Permalink for Section 5.3.3.2"></a></div>
+<p>In de Code-documentatie worden de concepten, relaties en attributen van het werkproces toegelicht voor gebruikers. </p>
+</section><section id="gebruikershandleiding"><div class="header-wrapper"><h5 id="x5-3-3-3-gebruikershandleiding"><bdi class="secno">5.3.3.3 </bdi>Gebruikershandleiding</h5><a class="self-link" href="#gebruikershandleiding" aria-label="Permalink for Section 5.3.3.3"></a></div>
+<p>In de gebruikershandleiding wordt het gebruik van het proces toegelicht. Het is belangrijk om de balans te vinden tussen de gewenste mate van detail en complexiteit die nodig is om de processen effectief te beschrijven en te begrijpen, terwijl het model nog steeds overzichtelijk en begrijpelijk blijft voor de beoogde gebruikers. Daarom kun je in de gebruikershandleiding aanvullende documentatie opnemen om de gewenste mate van detail en complexiteit vast te leggen. Dit kunnen bijvoorbeeld procesbeschrijvingen, business rules, datamodellen, use case scenarios, of gedetailleerde specificaties zijn. Door deze documentatie te koppelen aan het procesmodel kun je de benodigde informatie verschaffen zonder het procesmodel zelf te overladen met details.</p>
+</section></section></section></section> 
+  <section id="conformance"><div class="header-wrapper"><h2 id="x6-conformiteit"><bdi class="secno">6. </bdi>Conformiteit</h2><a class="self-link" href="#conformance" aria-label="Permalink for Section 6."></a></div><p>Naast onderdelen die als niet normatief gemarkeerd zijn,
+      zijn ook alle diagrammen, voorbeelden, en noten in dit document niet
+      normatief. Verder is alles in dit document normatief.</p></section>
+  <section id="index" class="appendix"><div class="header-wrapper"><h2 id="a-index"><bdi class="secno">A. </bdi>Index</h2><a class="self-link" href="#index" aria-label="Permalink for Appendix A."></a></div><section id="index-defined-here"><div class="header-wrapper"><h3 id="a-1-termen-gedefinieerd-door-deze-specificatie"><bdi class="secno">A.1 </bdi>Termen gedefinieerd door deze specificatie</h3><a class="self-link" href="#index-defined-here" aria-label="Permalink for Appendix A.1"></a></div>
+    
+    <ul class="index">
+    <li>
+      <a class="index-term" href="#dfn-bpmn">BPMN</a> 
+    <span class="print-only">§3.2.1</span></li><li>
+      <a class="index-term" href="#dfn-dataflowdiagrammen">Dataflowdiagrammen</a> 
+    <span class="print-only">§3.3.2</span></li><li>
+      <a class="index-term" href="#dfn-flowcharts">Flowcharts</a> 
+    <span class="print-only">§3.3.3</span></li><li>
+      <a class="index-term" href="#dfn-iampro-model">iAMPRo model</a> 
+    <span class="print-only">§1.1</span></li><li>
+      <a class="index-term" href="#dfn-idef">IDEF</a> 
+    <span class="print-only">§3.2.3</span></li><li>
+      <a class="index-term" href="#dfn-nen2660-2-2022">NEN2660-2:2022</a> 
+    <span class="print-only">§5.2.1</span></li><li>
+      <a class="index-term" href="#dfn-petri-nets">Petri nets</a> 
+    <span class="print-only">§3.2.4</span></li><li>
+      <a class="index-term" href="#dfn-rasci">RASCI</a> 
+    <span class="print-only">§3.3.4</span></li><li>
+      <a class="index-term" href="#dfn-sparql">SPARQL</a> 
+    <span class="print-only">§5.2.2</span></li><li>
+      <a class="index-term" href="#dfn-swimlanediagram">Swimlanediagram</a> 
+    <span class="print-only">§3.3.1</span></li><li>
+      <a class="index-term" href="#dfn-turtle">Turtle</a> 
+    <span class="print-only">§5.2.3</span></li><li>
+      <a class="index-term" href="#dfn-uml">UML</a> 
+    <span class="print-only">§3.2.2</span></li><li>
+      <a class="index-term" href="#dfn-value-stream-mapping">Value stream mapping</a> 
+    <span class="print-only">§3.2.5</span></li><li>
+      <a class="index-term" href="#dfn-visi">VISI</a> 
+    <span class="print-only">§3.2.6</span></li>
+  </ul>
+  </section><section id="index-defined-elsewhere"><div class="header-wrapper"><h3 id="a-2-termen-gedefinieerd-door-referentie"><bdi class="secno">A.2 </bdi>Termen gedefinieerd door referentie</h3><a class="self-link" href="#index-defined-elsewhere" aria-label="Permalink for Appendix A.2"></a></div>
+    
+    <ul class="index">
+    
+  </ul>
+  </section></section>
+
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+
+
+<script id="annotation-service-runtime">(() => {
+// @ts-check
+const SETTING_KEY = "annotation-service-hypothesis";
+const SETTING_VALUE_ALLOWED = "allowed";
+const hClientDefault = {
+  openSidebar: false,
+  showHighlights: true,
+  theme: "classic",
+  branding: {
+    accentColor: "rgb(0, 157, 224)",
+    appBackgroundColor: "white",
+    ctaBackgroundColor: "rgb(255, 110, 26)",
+    ctaTextColor: "white",
+    selectionFontFamily: "'Museo Sans', Museo, Helvetica, Arial, sans serif",
+    annotationFontFamily: "'Museo Sans', Museo, Helvetica, Arial, sans serif",
+  },
+};
+
+if (document.respec) {
+  document.respec.ready.then(render);
+} else {
+  render();
+}
+
+/** Render the placeholder (Load Service Button) or annotation info (# annotations, Show Annotation Button). */
+function render() {
+  if (localStorage.getItem(SETTING_KEY) == SETTING_VALUE_ALLOWED) {
+    renderAnnotationServiceInfo();
+  } else {
+    renderPlaceholder();
+  }
+}
+
+/** Render Load Service Button, with privacy info. */
+function renderPlaceholder() {
+  localStorage.removeItem(SETTING_KEY);
+
+  /** @type {HTMLElement} */
+  const placeholder = document.querySelector("#annotation-service-placeholder");
+  placeholder.hidden = false;
+
+  const listener = loadButtonListener();
+  document
+    .querySelector("[data-load-annotation-service]")
+    .addEventListener("keydown", listener);
+  document
+    .querySelector("[data-load-annotation-service]")
+    .addEventListener("click", listener);
+
+  /** @type {HTMLElement} */
+  const serviceInfo = document.querySelector("#annotation-service-loaded");
+  serviceInfo.hidden = true;
+}
+
+function loadButtonListener() {
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLButtonElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    target.disabled = true;
+    localStorage.setItem(SETTING_KEY, SETTING_VALUE_ALLOWED);
+    renderAnnotationServiceInfo();
+  };
+}
+
+function unloadButtonListener() {
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLButtonElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    target.disabled = true;
+    localStorage.removeItem(SETTING_KEY);
+    removeHScript();
+  };
+}
+
+function renderAnnotationServiceInfo() {
+  addHConfig(document);
+  addHScript(document);
+}
+
+/**
+ *
+ * @param {Document} doc
+ * @param {*} conf
+ */
+function addHScript(doc, conf) {
+  const script = doc.createElement("script");
+  script.src = "https://hypothes.is/embed.js";
+  script.async = true;
+  doc.body.appendChild(script);
+
+  script.addEventListener("load", event => {
+    /** @type {HTMLElement} */
+    const placeholder = document.querySelector(
+      "#annotation-service-placeholder"
+    );
+    placeholder.hidden = true;
+
+    /** @type {HTMLElement} */
+    const serviceInfo = document.querySelector("#annotation-service-loaded");
+    serviceInfo.hidden = false;
+
+    const unloadListener = unloadButtonListener();
+    document
+      .querySelector("[data-unload-annotation-service]")
+      .addEventListener("keydown", unloadListener);
+    document
+      .querySelector("[data-unload-annotation-service]")
+      .addEventListener("click", unloadListener);
+  });
+}
+
+/**
+ * Retract Hypothesis permission.
+ */
+function removeHScript() {
+  // Deleting the hypothesis-script, does not undo its changes, listeners etc.
+  // Instead, reload the frame.
+  window.location.reload();
+}
+
+/**
+ *
+ * @param {Document} doc
+ * @param {*} conf
+ */
+function addHConfig(doc, conf) {
+  const script = doc.createElement("script");
+  script.className = "js-hypothesis-config";
+  script.type = "application/json";
+  script.innerText = JSON.stringify(hClientDefault);
+  doc.body.appendChild(script);
+}
+})()</script><p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-iampro-model" aria-label="Links in this document to definition: iAMPRo model">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-iampro-model" aria-label="Permalink for definition: iAMPRo model. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-iampro-model-1" title="§ 1.1 Aanleiding">§ 1.1 Aanleiding</a> <a href="#ref-for-dfn-iampro-model-2" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-bpmn" aria-label="Links in this document to definition: BPMN">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-bpmn" aria-label="Permalink for definition: BPMN. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-uml" aria-label="Links in this document to definition: UML">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-uml" aria-label="Permalink for definition: UML. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-idef" aria-label="Links in this document to definition: IDEF">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-idef" aria-label="Permalink for definition: IDEF. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-petri-nets" aria-label="Links in this document to definition: Petri nets">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-petri-nets" aria-label="Permalink for definition: Petri nets. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-value-stream-mapping" aria-label="Links in this document to definition: Value stream mapping">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-value-stream-mapping" aria-label="Permalink for definition: Value stream mapping. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-visi" aria-label="Links in this document to definition: VISI">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-visi" aria-label="Permalink for definition: VISI. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-swimlanediagram" aria-label="Links in this document to definition: Swimlanediagram">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-swimlanediagram" aria-label="Permalink for definition: Swimlanediagram. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-dataflowdiagrammen" aria-label="Links in this document to definition: Dataflowdiagrammen">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-dataflowdiagrammen" aria-label="Permalink for definition: Dataflowdiagrammen. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-flowcharts" aria-label="Links in this document to definition: Flowcharts">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-flowcharts" aria-label="Permalink for definition: Flowcharts. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-rasci" aria-label="Links in this document to definition: RASCI">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-rasci" aria-label="Permalink for definition: RASCI. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-nen2660-2-2022" aria-label="Links in this document to definition: NEN2660-2:2022">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-nen2660-2-2022" aria-label="Permalink for definition: NEN2660-2:2022. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-sparql" aria-label="Links in this document to definition: SPARQL">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-sparql" aria-label="Permalink for definition: SPARQL. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-turtle" aria-label="Links in this document to definition: Turtle">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-turtle" aria-label="Permalink for definition: Turtle. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://docs.crow.nl/respec-design/fixup.js"></script></body></html>
