@@ -1,6 +1,10 @@
 # procesmodel
 Procesmodel wat CROW gebruikt om werkprocessen als data te modelleren en grafisch te visualiseren.
 
+## Documentatie 
+
+* [Onderbouwing keuze procesmodel](https://docs.crow.nl/procesmodel/keuzeprocesmodel/)
+
 
 Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
 
