@@ -1,2 +1,9 @@
-Dit document geeft een overzicht van werkprocessen bij elke processtap in het iAMPro model, en bijbehorende standaarden voor elk werkproces.
+Dit document geeft een overzicht van werkprocessen in de openbare ruimte en infrastructuur, en bijbehorende standaarden voor elk werkproces, binnen het kader van het iAMPro model voor asset management, gecombineerd met ondersteunende werkprocessen op basis van systems engineering en bouwwerk informatie management. Klik op de werkprocessen in onderstaande tabel om te navigeren naar de beschrijving van het werkproces.
+
+|                              | [Beleid en strategie](https://docs.crow.nl/procesmodel/processeniampro/#beleid-en-strategie) | [Beheren en Programmeren](https://docs.crow.nl/procesmodel/processeniampro/#programmeren) | [Plannen en voorbereiden](https://docs.crow.nl/procesmodel/processeniampro/#plannen-en-voorbereiden) | [Bouwen en onderhouden](https://docs.crow.nl/procesmodel/processeniampro/#bouwen-en-onderhouden) | [Monitoren en analyseren](https://docs.crow.nl/procesmodel/processeniampro/#monitoren) | Evalueren en bijsturen | Data en informatie | Mens en organisatie |
+|------------------------------|---------------------|-------------------------|------------------------|-----------------------|-------------------------|------------------------|---------------------|---------------------|
+| Asset management             |                     |                         |                        |                       |                         |                        |                     |                     |
+| Systems engineering          |                     |                         |                        |                       |                         |                        |                     |                     |
+| Bouwwerk informatie management |                     |                         |                        |                       |                         |                        |                     |                     |
+
 
