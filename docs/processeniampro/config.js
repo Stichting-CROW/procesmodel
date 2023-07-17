@@ -89,6 +89,12 @@ NEN_EN_ISO_19650_5_2020: {
   status: "Actueel",
   publisher: "NEN",
 },
+NEN_EN_ISO_31000_2018: {
+  title: "Risicomanagement - Richtlijnen",
+  href: "https://www.nen.nl/nen-iso-31000-2018-en-244159",
+  status: "Actueel",
+  publisher: "NEN",
+},
 Kennisposter_BIM_toepassingen: {
   title: "Kennisposter BIM toepassingen",
   href: "https://www.bimloket.nl//documents/Kennisposter_BIM-toepassingen.pdf",
