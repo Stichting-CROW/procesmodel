@@ -107,7 +107,12 @@ Handboek_specificeren: {
   status: "Actueel",
   publisher: "CROW",
 },
-
+Uitwisselafspraak_UAV_GC_Contractspecificaties: {
+  title: "Uitwisselafspraak UAV-GC Contractspecificaties",
+  href: "https://bimloket.github.io/contractspecificaties/",
+  status: "Actueel",
+  publisher: "DigiGO",
+},
 
   },
 };
