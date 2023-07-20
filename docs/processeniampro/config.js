@@ -113,6 +113,12 @@ Uitwisselafspraak_UAV_GC_Contractspecificaties: {
   status: "Actueel",
   publisher: "DigiGO",
 },
+Procesanalyse_informatie_uitwisselen_in_projecten: {
+  title: "Procesanalyse informatie uitwisselen in projecten",
+  href: "https://www.crow.nl/thema-s/informatiemanagement/bim-producten/procesanalyse-informatie-uitwisselen-in-projec-1",
+  status: "Actueel",
+  publisher: "CROW",
+},
 
   },
 };
