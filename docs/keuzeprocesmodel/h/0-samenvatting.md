@@ -1,7 +1,9 @@
 Dit document beschrijft: 
-1. De afweging tussen beschikbare procesmodelleringsmethodes;
+1. De criteria voor de afweging tussen beschikbare procesmodelleringsmethodes;
 2. De keuze van CROW voor een procesmodelleringsmethode;
-3. Hoe procesmodellen van CROW worden gepubliceerd en gevisualiseerd.
+3. Hoe procesmodellen van CROW als data worden gepubliceerd
+4. Hoe procesmodellen worden gevisualiseerd.
+5. Hoe de onderbouwing van een proces gepubliceerd wordt.
 
 <p><dfn data-lt="Procesmodelleringsmethode">Procesmethode</dfn>: een gestandaardiseerde methode voor het beschrijven van een proces, activiteit of workflow waarmee een procesmodel kan worden opgesteld.</p>
 
