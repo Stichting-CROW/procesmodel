@@ -1,11 +1,26 @@
-# procesmodel
-Procesmodel wat CROW gebruikt om werkprocessen als data te modelleren en grafisch te visualiseren.
+# Procesmodellen
+
+CROW beschrijft bij haar geschreven kennisproducten soms referentiewerkprocessen, denk aan inspecteren, ontwerpen, beheren, verifiëren enzovoorts. Om de processen als data te kunnen publiceren wordt er een "procesmodel" van gemaakt op basis van een standaard procesmodelleringsmethode. Een procesmodel wordt vervolgens gevisualiseerd om gebruikers inzicht te bieden in het proces. Met dit inzicht kan het proces worden toegepast in organisaties, en kan een informatiemodel worden opgesteld met de in- en output van informatie bij het proces. Bijvoorbeeld een informatiemodel voor contractspecificaties bij een procesmodel "contracteisen specificeren" of het IMBOR (informatiemodel beheer openbare ruimte) bij een procesmodel "inventarisatie van assets".
+
 
 ## Documentatie 
+
+### Keuze procesmodelleringsmethode
+
+Onderstaande documentatie beschrijft:
+* De afweging tussen beschikbare procesmodelleringsmethodes;
+* De keuze van CROW voor een procesmodelleringsmethode;
+* Hoe procesmodellen van CROW worden gepubliceerd en gevisualiseerd.
 
 * [Onderbouwing keuze procesmodel](https://docs.crow.nl/procesmodel/keuzeprocesmodel/)
   * [Interne review aug 2023](https://docs.crow.nl/procesmodel/keuzeprocesmodel/Keuzeprocesmodel@IR-20230101/IR20230710Toelichting-procesmodel.html)
 
+### Diepgang procesmodellen
+Nog op te stellen documentatie beschrijft de benodigde diepgang van procesmodellen voor het afleiden van informatiemodellen
+
+
+### Beheer van procesmodellen
+Nog op te stellen documentatie beschrijft het beheer van procesmodellen. Daaruit volgt welke metadata over versiebeheer meegeleverd wordt bij releases. 
 
 Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
 
