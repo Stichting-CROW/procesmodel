@@ -35,6 +35,12 @@ var respecConfig = {
     status: "Actueel",
     publisher: "ISO",
   },
+  LeidraadSE2: {
+  title: "Leidraad SE versie 2",
+  href: "https://www.leidraadse.nl/assets/files/downloads/LeidraadSE/V2/LeidraadSE_def_lowres.pdf",
+  status: "Vervallen",
+  publisher: "Leidraad SE",
+  },
   ISO_IEC_IEEE_15288_2015: {
     title: "ISO/IEC/IEEE 15288 Systems and software engineering - System life cycle processes",
     href: "https://www.iso.org/standard/63711.html",
