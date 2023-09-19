@@ -1,4 +1,6 @@
-Dit document geeft een overzicht van werkprocessen in de openbare ruimte en infrastructuur, en bijbehorende standaarden voor elk werkproces, binnen het kader van het iAMPro model voor asset management, gecombineerd met ondersteunende werkprocessen op basis van systems engineering en bouwwerk informatie management. Klik op de werkprocessen in onderstaande tabel om te navigeren naar de beschrijving van het werkproces.
+Dit document maakt een selectie van werkprocessen in de openbare ruimte en infrastructuur waarvoor een [=minimale dataset=] kan worden ontwikkeld waarmee de informatieuitwisseling tussen organisaties in de openbare ruimte en infrastructuur op korte termijn kan worden verbeterd. Scope is daarbij de *[=objectinformatie=]*. *Procesinformatie*  over samenwerken, aanbesteden en contracteren is buiten scope. 
 
-Voor de vraag hoe we deze werkprocessen als data willen vastleggen zie de [Onderbouwing keuze procesmodel](https://docs.crow.nl/procesmodel/keuzeprocesmodel/)
+Bij elk werkproces wordt een inventarisatie gedaan van bestaande normen en standaarden die het werkproces beschrijven. 
+
+Daarnaast wordt onderzocht, tot op welk detailniveau een proces moet worden uitgewerkt om te kunnen leiden tot een [=minimale dataset=].
 
